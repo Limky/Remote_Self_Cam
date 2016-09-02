@@ -4,20 +4,25 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BlankFragment_Album.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BlankFragment_Album#newInstance} factory method to
+ * Use the {@link Fragment_Main#newInstance} factory method to
  * create an instance of this fragment.
+ *
  */
-public class BlankFragment_Album extends Fragment {
+public class Fragment_Main extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,26 +34,28 @@ public class BlankFragment_Album extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public BlankFragment_Album() {
-        // Required empty public constructor
-    }
 
+    FragmentManager manager;
+    FragmentTransaction transaction;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment_Album.
+     * @return A new instance of fragment Fragment_Main.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment_Album newInstance(String param1, String param2) {
-        BlankFragment_Album fragment = new BlankFragment_Album();
+    public static Fragment_Main newInstance(String param1, String param2) {
+        Fragment_Main fragment = new Fragment_Main();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+    public Fragment_Main() {
+        // Required empty public constructor
     }
 
     @Override
@@ -58,13 +65,46 @@ public class BlankFragment_Album extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_album, container, false);
+
+        View mainFrameView =  inflater.inflate(R.layout.fragment_main, container, false);
+        manager = getFragmentManager();
+        transaction = manager.beginTransaction();
+
+
+       Button CameraBtn = (Button) mainFrameView.findViewById(R.id.button);
+        CameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"카메라 버튼 클릭.",Toast.LENGTH_LONG).show();
+
+                transaction.replace(R.id.replacedLayout, new BlankFragment_Camera()).addToBackStack("tag").commit();
+
+            }
+        });
+
+        Button AlbumBtn = (Button) mainFrameView.findViewById(R.id.button2);
+        AlbumBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"앨범 버튼 클릭.",Toast.LENGTH_SHORT).show();
+
+                transaction.replace(R.id.replacedLayout, new BlankFragment_Album()).addToBackStack("tag").commit();
+
+            }
+        });
+
+        return mainFrameView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -96,7 +136,7 @@ public class BlankFragment_Album extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -105,4 +145,8 @@ public class BlankFragment_Album extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-}
+
+    }
+
+
+
