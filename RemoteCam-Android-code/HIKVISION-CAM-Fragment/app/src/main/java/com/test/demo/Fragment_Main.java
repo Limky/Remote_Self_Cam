@@ -93,6 +93,17 @@ public class Fragment_Main extends Fragment {
         });
 
 
+        Button photo_galleryBtn = (Button)fragment_main_view.findViewById(R.id.photo_galleryBtn);
+        photo_galleryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                transaction.replace(R.id.replacedLayout, new Fragment_Gallery()).addToBackStack("tag").commit();
+
+            }
+        });
+
+
 
 
         return fragment_main_view;

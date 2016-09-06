@@ -1,8 +1,15 @@
 package com.test.demo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -10,12 +17,16 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.hikvision.netsdk.ExceptionCallBack;
@@ -25,6 +36,12 @@ import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
 import com.hikvision.netsdk.RealPlayCallBack;
 
 import org.MediaPlayer.PlayM4.Player;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -73,7 +90,11 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
 
     View fragment_camera_view;
-
+    Button CameraActionBtn,cancel_Btn,saveImageBtn;
+    String  fileName;
+    LinearLayout saveLayout;
+    ImageView capture_imageView;
+    Bitmap bitmap;
 
     public Fragment_Camera() {
         // Required empty public constructor
@@ -112,6 +133,8 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         // Inflate the layout for this fragment
         fragment_camera_view = inflater.inflate(R.layout.fragment_camera, container, false);
 
+
+
         Log.d("카메라 프래그먼트 진입완료","카메라 프래그먼트 onCreateView");
 
 
@@ -121,7 +144,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
         }
 
-        if (!initeActivity())
+        if (!initFragment())
         {
             getActivity().finish();
         }
@@ -137,7 +160,6 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
                 startPreview();
             }
         }, 100);// 0.1초 정도 딜레이를 준 후 시작
-
 
 
         return fragment_camera_view;
@@ -157,21 +179,30 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         return true;
     }
     // GUI init
-    private boolean initeActivity()
+    private boolean initFragment()
     {
         findViews();
         m_osurfaceView.getHolder().addCallback(this);
-   //     setListeners();
+        setListeners();
         return true;
     }
 
     private void findViews()
     {
-
         m_osurfaceView = (SurfaceView)fragment_camera_view.findViewById(R.id.Sur_Player);
-
+        cancel_Btn = (Button)fragment_camera_view.findViewById(R.id.cancel_Btn);
+        saveImageBtn = (Button)fragment_camera_view.findViewById(R.id.saveImageBtn);
+        CameraActionBtn = (Button) fragment_camera_view.findViewById(R.id.CameraAction);
+        saveLayout = (LinearLayout) fragment_camera_view.findViewById(R.id.CameraSave);
+        capture_imageView = (ImageView) fragment_camera_view.findViewById(R.id.capture_imageView);
     }
 
+    private void setListeners()
+    {
+        CameraActionBtn.setOnClickListener(Capture_Listener);
+        cancel_Btn.setOnClickListener(Cancel_Listener);
+        saveImageBtn.setOnClickListener(Saveimage_Listener);
+    }
 
     //login listener
     private void ipCameraLogin(){
@@ -223,7 +254,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     }
 
 
-    
+
 
   private void startPreview(){
 
@@ -527,17 +558,147 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     }
 
 
+    private Button.OnClickListener Capture_Listener = new Button.OnClickListener()
+    {
+        public void onClick(View v)
+        {
+            Toast.makeText(getActivity(),"카메라 캡춰링.",Toast.LENGTH_SHORT).show();
+            changeLayout(true);
+
+
+                if(m_iPort < 0)
+                {
+                    Log.e(TAG, "please start preview first");
+                    return;
+                }
+                Player.MPInteger stWidth = new Player.MPInteger();
+                Player.MPInteger stHeight = new Player.MPInteger();
+                if (!Player.getInstance().getPictureSize(m_iPort, stWidth, stHeight)){
+                    Log.e(TAG, "getPictureSize failed with error code:" + Player.getInstance().getLastError(m_iPort));
+                    return;
+                }
+                int nSize = 5 * stWidth.value * stHeight.value;
+                byte[] picBuf = new byte[nSize];
+                Player.MPInteger stSize = new Player.MPInteger();
+                if(!Player.getInstance().getBMP(m_iPort, picBuf, nSize, stSize))
+                {
+                    Log.e(TAG, "getBMP failed with error code:" + Player.getInstance().getLastError(m_iPort));
+                    return ;
+                }
+
+                //카메라부터 떨궈진 바이트 배열을 비트맵으로 변환 시켜 저장한다.
+                bitmap = BitmapFactory.decodeByteArray(picBuf,0,picBuf.length);
+
+                capture_imageView.setImageBitmap(bitmap);
+                change_capture_layout(true);
+
+                //한번 더 함수를 호출해 토큰을 이용 프리뷰를 멈춘다.
+                startPreview();
 
 
 
+        }
+    };
 
 
+    private Button.OnClickListener Cancel_Listener = new Button.OnClickListener() {
+        public void onClick(View v) {
+
+            //현재 멈춰진 프리뷰를 다시 호츨해 프리뷰를 시작한다.
+            startPreview();
+            change_capture_layout(false);
+            changeLayout(false);
+
+        }
+
+    };
 
 
+    private Button.OnClickListener Saveimage_Listener = new Button.OnClickListener() {
+        public void onClick(View v) {
+
+            try
+            {
+                Toast.makeText(getActivity(), "image saved", Toast.LENGTH_SHORT).show();
+
+                //파일 이름 :날짜_시간
+                Date day = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA);
+                fileName = String.valueOf(sdf.format(day));
+                fileName +=".jpg";
 
 
+                File filepath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/HIKVISION");
+                Log.d("filepath==", filepath.toString()+" "+filepath.exists());
+                if (!filepath.exists()) {
+                    boolean ret = filepath.mkdirs();
+                    Log.d("mkdirs action success!!", "ret:"+ret);
+                }
+
+                File filespace = new File(new File("/storage/emulated/0/DCIM/HIKVISION"), fileName);
+                if (filespace.exists()) {
+                    filespace.delete();
+                }
 
 
+                FileOutputStream file = new FileOutputStream(filespace);
+                bitmap.compress(Bitmap.CompressFormat.JPEG,100,file);
+                file.flush();
+                file.close();
+
+                galleryAddPic();
+
+                //다시 레이아웃을 처음으로 돌린다.
+                change_capture_layout(false);
+                changeLayout(false);
+                //멈춰진 프리뷰를 다시 호출하여 프리뷰를 동작시킨다.
+                startPreview();
+
+            }
+            catch (Exception err)
+            {
+                Log.e(TAG, "error: " + err.toString());
+            }
+
+
+        }
+
+    };
+
+
+    private void galleryAddPic() {
+
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File("/storage/emulated/0/DCIM/HIKVISION/"+fileName);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        getActivity().sendBroadcast(mediaScanIntent);
+
+    }
+
+    private void change_capture_layout(boolean b){
+        if(b){
+            capture_imageView.setVisibility(View.VISIBLE);
+            m_osurfaceView.setVisibility(View.GONE);
+
+        }else{
+            capture_imageView.setVisibility(View.GONE);
+            m_osurfaceView.setVisibility(View.VISIBLE);
+
+        }
+
+    }
+
+
+    private void changeLayout(boolean b) {
+        if(b) {
+            CameraActionBtn.setVisibility(View.GONE);
+            saveLayout.setVisibility(View.VISIBLE);
+        } else {
+            CameraActionBtn.setVisibility(View.VISIBLE);
+            saveLayout.setVisibility(View.GONE);
+        }
+    }
 
 
 
@@ -566,19 +727,36 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         mListener = null;
     }
 
-    @Override
+    //@Override
     public void surfaceCreated(SurfaceHolder holder) {
-
+        m_osurfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+        Log.i(TAG, "surface is created" + m_iPort);
+        if (-1 == m_iPort)
+        {
+            return;
+        }
+        Surface surface = holder.getSurface();
+        if (true == surface.isValid()) {
+            if (false == Player.getInstance().setVideoWindow(m_iPort, 0, holder)) {
+                Log.e(TAG, "Player setVideoWindow failed!");
+            }
+        }
     }
-
-    @Override
+    //@Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
     }
-
-    @Override
+    //@Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-
+        Log.i(TAG, "Player setVideoWindow release!" + m_iPort);
+        if (-1 == m_iPort)
+        {
+            return;
+        }
+        if (true == holder.getSurface().isValid()) {
+            if (false == Player.getInstance().setVideoWindow(m_iPort, 0, null)) {
+                Log.e(TAG, "Player setVideoWindow failed!");
+            }
+        }
     }
 
     /**

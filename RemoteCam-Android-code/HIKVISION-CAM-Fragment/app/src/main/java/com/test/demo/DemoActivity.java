@@ -51,20 +51,6 @@ import com.hikvision.netsdk.*;
  */
 public class DemoActivity extends Activity implements Callback
 {
-/*	private Button          m_oLoginBtn         	= null;
-	private Button          m_oPreviewBtn           = null;
-	private Button			m_oPlaybackBtn			= null;
-	private Button			m_oParamCfgBtn			= null;
-	private Button			m_oCaptureBtn			= null;
-	private Button			m_oRecordBtn			= null;
-	private	Button			m_oTalkBtn				= null;
-	private	Button			m_oPTZBtn				= null;
-	private Button			m_oOtherBtn			= null;
-	private SurfaceView 	m_osurfaceView			= null;
-	private EditText        m_oIPAddr				= null;
-	private EditText		m_oPort					= null;
-	private EditText		m_oUser					= null;
-	private EditText		m_oPsd					= null;*/
 
     private SurfaceView 	m_osurfaceView			= null;
 	private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;

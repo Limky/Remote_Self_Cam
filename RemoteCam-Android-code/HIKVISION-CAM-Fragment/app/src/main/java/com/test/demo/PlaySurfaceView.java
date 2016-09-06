@@ -27,8 +27,8 @@ public class PlaySurfaceView extends SurfaceView implements Callback {
 	private int m_iPort = -1;
 	private boolean m_bSurfaceCreated = false;
 
-	public PlaySurfaceView(DemoActivity demoActivity) {
-		super((Context) demoActivity);
+	public PlaySurfaceView(Context context) {
+		super(context);
 		// TODO Auto-generated constructor stub
 		getHolder().addCallback(this);
 	}
