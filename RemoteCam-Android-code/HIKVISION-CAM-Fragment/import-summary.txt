@@ -1,0 +1,66 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .idea\
+* .idea\.name
+* .idea\SimpleDemo.iml
+* .idea\compiler.xml
+* .idea\copyright\
+* .idea\copyright\profiles_settings.xml
+* .idea\encodings.xml
+* .idea\misc.xml
+* .idea\modules.xml
+* .idea\workspace.xml
+* AudioEngineSDK.jar
+* HCNetSDK.jar
+* PlayerSDK.jar
+* default.properties
+* proguard.cfg
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets
+* libs\armeabi\libAudioEngine.so => app\src\main\jniLibs\armeabi\libAudioEngine.so
+* libs\armeabi\libCpuFeatures.so => app\src\main\jniLibs\armeabi\libCpuFeatures.so
+* libs\armeabi\libHCAlarm.so => app\src\main\jniLibs\armeabi\libHCAlarm.so
+* libs\armeabi\libHCCore.so => app\src\main\jniLibs\armeabi\libHCCore.so
+* libs\armeabi\libHCCoreDevCfg.so => app\src\main\jniLibs\armeabi\libHCCoreDevCfg.so
+* libs\armeabi\libHCDisplay.so => app\src\main\jniLibs\armeabi\libHCDisplay.so
+* libs\armeabi\libHCGeneralCfgMgr.so => app\src\main\jniLibs\armeabi\libHCGeneralCfgMgr.so
+* libs\armeabi\libHCIndustry.so => app\src\main\jniLibs\armeabi\libHCIndustry.so
+* libs\armeabi\libhcnetsdk.so => app\src\main\jniLibs\armeabi\libhcnetsdk.so
+* libs\armeabi\libHCPlayBack.so => app\src\main\jniLibs\armeabi\libHCPlayBack.so
+* libs\armeabi\libHCPreview.so => app\src\main\jniLibs\armeabi\libHCPreview.so
+* libs\armeabi\libHCVoiceTalk.so => app\src\main\jniLibs\armeabi\libHCVoiceTalk.so
+* libs\armeabi\libPlayCtrl.so => app\src\main\jniLibs\armeabi\libPlayCtrl.so
+* libs\armeabi\libPlayCtrl_v5.so => app\src\main\jniLibs\armeabi\libPlayCtrl_v5.so
+* libs\armeabi\libPlayCtrl_v7.so => app\src\main\jniLibs\armeabi\libPlayCtrl_v7.so
+* libs\armeabi\libSystemTransform.so => app\src\main\jniLibs\armeabi\libSystemTransform.so
+* lint.xml => app\lint.xml
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

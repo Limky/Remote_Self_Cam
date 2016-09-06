@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.test.demo.Fragment_Camera"
+    android:fillViewport="true" >
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:id="@+id/view_camera_buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="save capture"
+            android:id="@+id/CameraAction"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/widget_Play"
+        android:layout_width="fill_parent"
+        android:layout_height="382dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+
+        <SurfaceView
+            android:id="@+id/Sur_Player"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="60dp"
+            android:background="#0000ff00" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
+
