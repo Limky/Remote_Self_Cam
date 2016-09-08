@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/meetingback"
+    tools:context="com.example.sqisoft.mylayout.MainActivity">
+<!--
+
+    <ImageView
+        android:layout_marginTop="130dp"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:background="@drawable/meeting2"/>
+-->
+
+
+    <TextView
+        android:id="@+id/titleLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Hello World!"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:text="SOFTWARE QUALITY INNOVATION"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:layout_alignParentTop="true"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:background="#aaffffff">
+
+        <TextView
+            android:id="@+id/usernameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:text="Username : "
+            android:textStyle="bold"
+            android:textColor="#ff222222"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/usernameEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/usernameLabel"
+            android:layout_alignBaseline="@+id/usernameLabel"
+            android:layout_marginLeft="4dp"/>
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:layout_below="@+id/usernameLabel"
+            android:textStyle="bold"
+            android:text="Password : "
+            android:textColor="#ff222222"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:id="@+id/passwordEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/passwordLabel"
+            android:layout_alignBaseline="@id/passwordLabel"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Login" />
+
+        <Button
+            android:id="@+id/exitBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passwordLabel"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Exit"/>
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

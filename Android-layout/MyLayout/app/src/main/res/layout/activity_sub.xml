@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sqisoft.mylayout.SubActivity">
+
+    <Button
+        android:text="전체영역"
+        android:textColor="#ff000000"
+        android:textSize="24dp"
+        android:background="#9CCC65"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_below="@+id/topButton"
+        android:layout_above="@+id/buttomButton"
+        android:layout_margin="0dp"/>
+
+    <Button
+        android:id="@+id/topButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="상단버튼"
+        android:textColor="#ffffff"
+        android:textSize="24dp"
+        android:background="#33691E"/>
+
+    <Button
+        android:id="@+id/buttomButton"
+        android:text="하단버튼"
+        android:textColor="#ff000000"
+        android:textSize="24dp"
+        android:background="#33691E"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
