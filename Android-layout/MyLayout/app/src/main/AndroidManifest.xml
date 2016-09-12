@@ -10,18 +10,22 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat"></activity>
+        <activity
+            android:name=".SubActivity"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".ImageScrollView"
+            android:theme="@style/Theme.AppCompat">
+
+        </activity>
+        <activity android:name=".FrameLayout"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".SubActivity"
-            android:theme="@style/Theme.AppCompat">
-
-
         </activity>
     </application>
 
