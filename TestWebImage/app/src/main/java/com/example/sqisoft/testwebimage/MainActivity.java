@@ -4,12 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.net.HttpURLConnection;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        getimage_btn = (Button) findViewById(R.id.getimage_btn);
+   /*     getimage_btn = (Button) findViewById(R.id.getimage_btn);
         getimage_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,14 +46,26 @@ public class MainActivity extends AppCompatActivity {
                 image.setImageBitmap(bit);
                 image.invalidate();
             }
-        });
+        });*/
 
     }
 
-    public void getImage(){
-        Toast.makeText(getApplicationContext(),"이미지 얻어오기 이벤트222",Toast.LENGTH_SHORT).show();
+    public void getImage(View v) {
+
         new WebGetImage().execute();
         image.setImageBitmap(bit);
+        image.invalidate();
+      new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                //여기에 딜레이 후 시작할 작업들을 입력
+
+                new WebGetImage().execute();
+                image.setImageBitmap(bit);
+            }
+        }, 1100);// 1.1초 정도 딜레이를 준 후 시작
 
     }
 
