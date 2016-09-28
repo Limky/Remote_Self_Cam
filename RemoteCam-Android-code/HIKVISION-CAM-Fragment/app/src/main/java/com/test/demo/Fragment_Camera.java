@@ -4,18 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.net.Uri;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
+import android.util.Base64;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -24,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -37,8 +33,11 @@ import com.hikvision.netsdk.RealPlayCallBack;
 
 import org.MediaPlayer.PlayM4.Player;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -64,7 +63,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
     private OnFragmentInteractionListener mListener;
 
-/**+++++++++++++++++++++++++++++++++++++ Area inserted DemoActivity code ++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /**+++++++++++++++++++++++++++++++++++++ Area inserted DemoActivity code ++++++++++++++++++++++++++++++++++++++++++++++++*/
     private SurfaceView m_osurfaceView			= null;
     private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;
 
@@ -95,6 +94,9 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     LinearLayout saveLayout;
     ImageView capture_imageView;
     Bitmap bitmap;
+
+    private String uri ="http://192.168.2.245/Streaming/channels/3/picture";
+    private Bitmap bit = null;
 
     public Fragment_Camera() {
         // Required empty public constructor
@@ -256,7 +258,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
 
 
-  private void startPreview(){
+    private void startPreview(){
 
         Log.d("LimkyStartPreview 작동", "LimkyStartPreview 작동");
         try
@@ -274,7 +276,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
                 {
                     if(!m_bMultiPlay)
                     {
-                   //     startMultiPreview();
+                        //     startMultiPreview();
                         m_bMultiPlay = true;
                         //	m_oPreviewBtn.setText("Stop");
                     }
@@ -479,7 +481,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
             public void fRealDataCallBack(int iRealHandle, int iDataType, byte[] pDataBuffer, int iDataSize)
             {
                 // player channel 1
-              processRealData(1, iDataType, pDataBuffer, iDataSize, Player.STREAM_REALTIME);
+                processRealData(1, iDataType, pDataBuffer, iDataSize, Player.STREAM_REALTIME);
             }
         };
         return cbf;
@@ -564,41 +566,93 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         {
             Toast.makeText(getActivity(),"카메라 캡춰링.",Toast.LENGTH_SHORT).show();
             changeLayout(true);
+/*
 
 
-                if(m_iPort < 0)
+            if(m_iPort < 0)
+            {
+                Log.e(TAG, "please start preview first");
+                return;
+            }
+            Player.MPInteger stWidth = new Player.MPInteger();
+            Player.MPInteger stHeight = new Player.MPInteger();
+            if (!Player.getInstance().getPictureSize(m_iPort, stWidth, stHeight)){
+                Log.e(TAG, "getPictureSize failed with error code:" + Player.getInstance().getLastError(m_iPort));
+                return;
+            }
+            int nSize = 5 * stWidth.value * stHeight.value;
+            byte[] picBuf = new byte[nSize];
+            Player.MPInteger stSize = new Player.MPInteger();
+            if(!Player.getInstance().getBMP(m_iPort, picBuf, nSize, stSize))
+            {
+                Log.e(TAG, "getBMP failed with error code:" + Player.getInstance().getLastError(m_iPort));
+                return ;
+            }
+*/
+
+            //카메라부터 떨궈진 바이트 배열을 비트맵으로 변환 시켜 저장한다.
+          //  bitmap = BitmapFactory.decodeByteArray(picBuf,0,picBuf.length);
+
+            new WebGetImage().execute();
+            capture_imageView.setImageBitmap(bit);
+            new Handler().postDelayed(new Runnable()
+            {
+                @Override
+                public void run()
                 {
-                    Log.e(TAG, "please start preview first");
-                    return;
+                    //여기에 딜레이 후 시작할 작업들을 입력
+                    new WebGetImage().execute();
+                    capture_imageView.setImageBitmap(bit);
                 }
-                Player.MPInteger stWidth = new Player.MPInteger();
-                Player.MPInteger stHeight = new Player.MPInteger();
-                if (!Player.getInstance().getPictureSize(m_iPort, stWidth, stHeight)){
-                    Log.e(TAG, "getPictureSize failed with error code:" + Player.getInstance().getLastError(m_iPort));
-                    return;
-                }
-                int nSize = 5 * stWidth.value * stHeight.value;
-                byte[] picBuf = new byte[nSize];
-                Player.MPInteger stSize = new Player.MPInteger();
-                if(!Player.getInstance().getBMP(m_iPort, picBuf, nSize, stSize))
-                {
-                    Log.e(TAG, "getBMP failed with error code:" + Player.getInstance().getLastError(m_iPort));
-                    return ;
-                }
+            }, 1200);// 1.2초 정도 딜레이를 준 후 시작
 
-                //카메라부터 떨궈진 바이트 배열을 비트맵으로 변환 시켜 저장한다.
-                bitmap = BitmapFactory.decodeByteArray(picBuf,0,picBuf.length);
 
-                capture_imageView.setImageBitmap(bitmap);
-                change_capture_layout(true);
 
-                //한번 더 함수를 호출해 토큰을 이용 프리뷰를 멈춘다.
-                startPreview();
+            capture_imageView.setImageBitmap(bitmap);
+            change_capture_layout(true);
+
+            //한번 더 함수를 호출해 토큰을 이용 프리뷰를 멈춘다.
+            startPreview();
 
 
 
         }
     };
+
+
+    public class WebGetImage extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            // 네트워크에 접속해서 데이터를 가져옴
+
+            try {
+                //웹사이트에 접속 (사진이 있는 주소로 접근)
+                URL Url = new URL(uri);
+                // 웹사이트에 접속 설정
+                HttpURLConnection urlcon =(HttpURLConnection) Url.openConnection();
+                //    Log.i("urlcon","Web-CODE ========1========= "+urlcon.getResponseCode());
+
+                String userpass = "admin:1234qwer";
+                String basicAuth = "Basic " + new String(Base64.encode(userpass.getBytes(),Base64.DEFAULT));
+                urlcon.setRequestProperty("Authorization",basicAuth);
+
+                urlcon.connect();
+                //     Log.i("urlcon","Web-CODE ========2========= "+urlcon.getResponseCode());
+                // 이미지 길이 불러옴
+                int imagelength = urlcon.getContentLength();
+                // 스트림 클래스를 이용하여 이미지를 불러옴
+                BufferedInputStream bis = new BufferedInputStream(urlcon.getInputStream(), imagelength);
+                // 스트림을 통하여 저장된 이미지를 이미지 객체에 넣어줌
+                bit = BitmapFactory.decodeStream(bis);
+                bis.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
 
 
     private Button.OnClickListener Cancel_Listener = new Button.OnClickListener() {
@@ -642,7 +696,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
 
                 FileOutputStream file = new FileOutputStream(filespace);
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,file);
+                bit.compress(Bitmap.CompressFormat.JPEG,100,file);
                 file.flush();
                 file.close();
 
