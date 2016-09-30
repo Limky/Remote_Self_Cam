@@ -594,7 +594,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
           //  bitmap = BitmapFactory.decodeByteArray(picBuf,0,picBuf.length);
 
             new WebGetImage().execute();
-            capture_imageView.setImageBitmap(bit);
+           /* capture_imageView.setImageBitmap(bit);
             new Handler().postDelayed(new Runnable()
             {
                 @Override
@@ -605,7 +605,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
                     capture_imageView.setImageBitmap(bit);
                 }
             }, 1200);// 1.2초 정도 딜레이를 준 후 시작
-
+*/
 
 
             capture_imageView.setImageBitmap(bitmap);
@@ -651,6 +651,13 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
             }
             return null;
         }
+        
+         @Override
+         protected  void onPostExecute(Void nothing){
+            capture_imageView.setImageBitmap(bit);
+            capture_imageView.invalidate();
+        }
+        
 
     }
 
