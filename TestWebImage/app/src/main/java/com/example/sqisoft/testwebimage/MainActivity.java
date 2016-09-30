@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
@@ -34,20 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         image = (ImageView) findViewById(R.id.imageView);
 
-
-
-   /*     getimage_btn = (Button) findViewById(R.id.getimage_btn);
-        getimage_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"이미지 얻어오기 이벤트",Toast.LENGTH_SHORT).show();
-                //getImage();
-                new WebGetImage().execute();
-                image.setImageBitmap(bit);
-                image.invalidate();
-            }
-        });*/
-
     }
 
     public void getImage(View v) {
@@ -55,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         new WebGetImage().execute();
         image.setImageBitmap(bit);
         image.invalidate();
+   /*
       new Handler().postDelayed(new Runnable()
         {
             @Override
@@ -66,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
                 image.setImageBitmap(bit);
             }
         }, 1100);// 1.1초 정도 딜레이를 준 후 시작
-
+*/
     }
 
 
-    public class WebGetImage extends AsyncTask<Void, Void, Void> {
+    class WebGetImage extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -81,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 URL Url = new URL(uri);
                 // 웹사이트에 접속 설정
                 HttpURLConnection urlcon =(HttpURLConnection) Url.openConnection();
-           //    Log.i("urlcon","Web-CODE ========1========= "+urlcon.getResponseCode());
+                //    Log.i("urlcon","Web-CODE ========1========= "+urlcon.getResponseCode());
 
                 String userpass = "admin:1234qwer";
                 String basicAuth = "Basic " + new String(Base64.encode(userpass.getBytes(),Base64.DEFAULT));
                 urlcon.setRequestProperty("Authorization",basicAuth);
 
                 urlcon.connect();
-           //     Log.i("urlcon","Web-CODE ========2========= "+urlcon.getResponseCode());
+                //     Log.i("urlcon","Web-CODE ========2========= "+urlcon.getResponseCode());
                 // 이미지 길이 불러옴
                 int imagelength = urlcon.getContentLength();
                 // 스트림 클래스를 이용하여 이미지를 불러옴
@@ -96,13 +82,28 @@ public class MainActivity extends AppCompatActivity {
                 // 스트림을 통하여 저장된 이미지를 이미지 객체에 넣어줌
                 bit = BitmapFactory.decodeStream(bis);
                 bis.close();
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            publishProgress();
             return null;
         }
 
+        @Override
+       protected  void onPostExecute(Void nothing){
+            image.setImageBitmap(bit);
+            image.invalidate();
+       }
+
+        protected void onCancelled() {
+
+        }
+
+
     }
+
 
 
 }
