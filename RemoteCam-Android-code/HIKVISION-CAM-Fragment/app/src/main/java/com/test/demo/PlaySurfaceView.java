@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -54,7 +55,9 @@ public class PlaySurfaceView extends SurfaceView implements Callback {
         	if (false == Player.getInstance().setVideoWindow(m_iPort, 0, arg0)) {	
         		Log.e(TAG, "Player setVideoWindow failed!");
         	}	
-    	}      
+    	}
+
+
 	}
 
 	@Override

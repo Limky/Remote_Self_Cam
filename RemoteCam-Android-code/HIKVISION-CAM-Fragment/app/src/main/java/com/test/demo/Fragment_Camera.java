@@ -19,10 +19,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hikvision.netsdk.ExceptionCallBack;
@@ -94,6 +97,12 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     LinearLayout saveLayout;
     ImageView capture_imageView;
     Bitmap bitmap;
+    TextView timerTextView;
+    TimerAsyncTask task;
+    ImageView animatedImage;
+    Animation animation;
+
+    boolean asyncStatus = true;
 
     private String uri ="http://192.168.2.245/Streaming/channels/3/picture";
     private Bitmap bit = null;
@@ -127,6 +136,8 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
     }
 
     @Override
@@ -197,6 +208,8 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         CameraActionBtn = (Button) fragment_camera_view.findViewById(R.id.CameraAction);
         saveLayout = (LinearLayout) fragment_camera_view.findViewById(R.id.CameraSave);
         capture_imageView = (ImageView) fragment_camera_view.findViewById(R.id.capture_imageView);
+        timerTextView = (TextView) fragment_camera_view.findViewById(R.id.timer);
+        animatedImage = (ImageView) fragment_camera_view.findViewById(R.id.animatedImage);
     }
 
     private void setListeners()
@@ -260,9 +273,13 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
     private void startPreview(){
 
+      //  ipCameraLogin();
+
+
         Log.d("LimkyStartPreview 작동", "LimkyStartPreview 작동");
         try
         {
+            Thread.sleep(500);
             ((InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE)).
                     hideSoftInputFromWindow(getView().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             if(m_iLogID < 0)
@@ -564,60 +581,100 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     {
         public void onClick(View v)
         {
+            CameraActionBtn.setVisibility(View.GONE);
+            animatedImage.startAnimation(animation);
+            task = new TimerAsyncTask();
+            task.execute();
+
             Toast.makeText(getActivity(),"카메라 캡춰링.",Toast.LENGTH_SHORT).show();
-            changeLayout(true);
-/*
-
-
-            if(m_iPort < 0)
-            {
-                Log.e(TAG, "please start preview first");
-                return;
-            }
-            Player.MPInteger stWidth = new Player.MPInteger();
-            Player.MPInteger stHeight = new Player.MPInteger();
-            if (!Player.getInstance().getPictureSize(m_iPort, stWidth, stHeight)){
-                Log.e(TAG, "getPictureSize failed with error code:" + Player.getInstance().getLastError(m_iPort));
-                return;
-            }
-            int nSize = 5 * stWidth.value * stHeight.value;
-            byte[] picBuf = new byte[nSize];
-            Player.MPInteger stSize = new Player.MPInteger();
-            if(!Player.getInstance().getBMP(m_iPort, picBuf, nSize, stSize))
-            {
-                Log.e(TAG, "getBMP failed with error code:" + Player.getInstance().getLastError(m_iPort));
-                return ;
-            }
-*/
-
-            //카메라부터 떨궈진 바이트 배열을 비트맵으로 변환 시켜 저장한다.
-          //  bitmap = BitmapFactory.decodeByteArray(picBuf,0,picBuf.length);
-
-            new WebGetImage().execute();
-           /* capture_imageView.setImageBitmap(bit);
-            new Handler().postDelayed(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    //여기에 딜레이 후 시작할 작업들을 입력
-                    new WebGetImage().execute();
-                    capture_imageView.setImageBitmap(bit);
-                }
-            }, 1200);// 1.2초 정도 딜레이를 준 후 시작
-*/
-
-
-            capture_imageView.setImageBitmap(bitmap);
-            change_capture_layout(true);
-
-            //한번 더 함수를 호출해 토큰을 이용 프리뷰를 멈춘다.
-            startPreview();
-
-
 
         }
     };
+
+
+    public void captureAndLayoutChange(){
+
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                animatedImage.setAnimation(null);
+                animatedImage.setVisibility(View.GONE);
+                timerTextView.setVisibility(View.GONE);
+                change_capture_layout(true);
+                changeLayout(true);
+
+                //한번 더 함수를 호출해 토큰을 이용 프리뷰를 멈춘다.
+                startPreview();
+            }
+        }, 100);// 4초 정도 딜레이를 준 후 시작*/
+
+    }
+
+
+
+
+    class Sub_timer_thread extends Thread{
+        //  run() 메서드 오버라이딩
+        public void run(){
+            //스레드에서 실행할 작업
+            task = new TimerAsyncTask();
+            task.execute();
+            new WebGetImage().execute();
+        }
+    }
+
+
+    private class TimerAsyncTask extends AsyncTask<Integer, Void, Void> {
+        private int timeNumber;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            animatedImage.setVisibility(View.VISIBLE);
+            timerTextView.setVisibility(View.VISIBLE);
+            timerTextView.setText("1");
+            timeNumber = 1;
+
+        }
+
+        @Override
+        protected Void doInBackground(Integer... params) {
+           while (asyncStatus) {
+               try {
+                   if(timeNumber == 3) {
+                       Sub_timer_thread.sleep(1000);
+                       asyncStatus = false;
+                   }
+                   Sub_timer_thread.sleep(1000);
+                   if(asyncStatus)timeNumber++;
+                   publishProgress();
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void ... values) {
+            timerTextView.setText(Integer.toString(timeNumber));
+            timerTextView.invalidate();
+
+        }
+
+        @Override
+        protected void onPostExecute(Void nothing) {
+            timerTextView.setText(Integer.toString(timeNumber));
+            new WebGetImage().execute();
+            captureAndLayoutChange();
+            asyncStatus =true;
+        }
+    }
+
+
 
 
     public class WebGetImage extends AsyncTask<Void, Void, Void> {
@@ -651,13 +708,13 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
             }
             return null;
         }
-        
-         @Override
-         protected  void onPostExecute(Void nothing){
+
+        @Override
+        protected  void onPostExecute(Void nothing){
             capture_imageView.setImageBitmap(bit);
             capture_imageView.invalidate();
         }
-        
+
 
     }
 
@@ -741,6 +798,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         if(b){
             capture_imageView.setVisibility(View.VISIBLE);
             m_osurfaceView.setVisibility(View.GONE);
+
 
         }else{
             capture_imageView.setVisibility(View.GONE);

@@ -89,13 +89,16 @@ public class Fragment_imageDetail extends Fragment {
         String imgPath = mParam1;
 
         //** 완성된 이미지 보여주기  *//*
-        BitmapFactory.Options bfo = new BitmapFactory.Options();
-        bfo.inSampleSize = 1;
+      /*  BitmapFactory.Options bfo = new BitmapFactory.Options();
+        bfo.inSampleSize = 10;
         ImageView iv = (ImageView) imageDetailView.findViewById(R.id.imageView);
         Bitmap bm = BitmapFactory.decodeFile(imgPath, bfo);
         Bitmap resized = Bitmap.createScaledBitmap(bm,imgWidth, imgHeight, true);
-        iv.setImageBitmap(resized);
+        iv.setImageBitmap(resized);*/
 
+        Bitmap bmp = BitmapFactory.decodeFile(imgPath);
+        ImageView iv = (ImageView) imageDetailView.findViewById(R.id.imageView);
+        iv.setImageBitmap(bmp);
 
         /** 리스트로 가기 버튼 */
         Button btn = (Button)imageDetailView.findViewById(R.id.btn_back);

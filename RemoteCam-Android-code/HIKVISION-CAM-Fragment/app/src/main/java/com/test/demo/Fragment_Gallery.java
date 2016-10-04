@@ -127,7 +127,7 @@ public class Fragment_Gallery extends Fragment {
             manager = getFragmentManager();
             transaction = manager.beginTransaction();
 
-           transaction.replace(R.id.replacedLayout, Fragment_imageDetail.newInstance(imgPath,"Limky값")).addToBackStack("tag").commit();
+            transaction.replace(R.id.replacedLayout, Fragment_imageDetail.newInstance(imgPath,"Limky값")).addToBackStack("tag").commit();
 
         }
 
@@ -151,7 +151,7 @@ public class Fragment_Gallery extends Fragment {
             ImageView imageView;
             if (convertView == null){
                 imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(320, 310));
+                imageView.setLayoutParams(new GridView.LayoutParams(360, 300));
                 imageView.setAdjustViewBounds(false);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imageView.setPadding(1, 1, 1, 1);
@@ -159,11 +159,11 @@ public class Fragment_Gallery extends Fragment {
                 imageView = (ImageView) convertView;
             }
             BitmapFactory.Options bo = new BitmapFactory.Options();
-            bo.inSampleSize = 1;
+            bo.inSampleSize =10;
             Bitmap bmp = BitmapFactory.decodeFile(thumbsDataList.get(position), bo);
 
 
-            Bitmap resized = Bitmap.createScaledBitmap(bmp, 95, 95, true);
+            Bitmap resized = Bitmap.createScaledBitmap(bmp, 150 , 150, true);
             imageView.setImageBitmap(resized);
 
             return imageView;
@@ -195,9 +195,9 @@ public class Fragment_Gallery extends Fragment {
                 int thumbsSizeCol = imageCursor.getColumnIndex(MediaStore.Images.Media.SIZE);
                 int num = 0;
                 int nCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA); //bitmap
-                Log.d("test","img is " + "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ");
+            //    Log.d("test","img is " + "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ");
                 do {
-                    Log.d("test","img is " + " do do do do do do do do do do do do do");
+                    Log.d("test","img " + "로드 되었습니다.");
 
                     thumbsID = imageCursor.getString(thumbsIDCol);
                     thumbsData = imageCursor.getString(thumbsDataCol);
@@ -227,7 +227,7 @@ public class Fragment_Gallery extends Fragment {
             final String orderBy = MediaStore.Images.Media.DATE_ADDED;
 
             Cursor imageCursor = getActivity().managedQuery(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, "_ID='"+ thumbID +"'", null, orderBy + " DESC");
-            Log.d("test","img is " + "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+            Log.d("test","img is " + "getImageInfo");
             if (imageCursor != null && imageCursor.moveToFirst()){
                 String strImage;
                 if (imageCursor.getCount() > 0){
@@ -251,22 +251,6 @@ public class Fragment_Gallery extends Fragment {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
