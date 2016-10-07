@@ -66,7 +66,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
     private OnFragmentInteractionListener mListener;
 
-    /**+++++++++++++++++++++++++++++++++++++ Area inserted DemoActivity code ++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /**+++++++++++++++++++++++++++++++++++++ Area inserted  code ++++++++++++++++++++++++++++++++++++++++++++++++*/
     private SurfaceView m_osurfaceView			= null;
     private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;
 
@@ -88,7 +88,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
     private boolean			m_bNeedDecode			= true;
 
-    /**+++++++++++++++++++++++++++++++++++++ Area inserted DemoActivity code ++++++++++++++++++++++++++++++++++++++++++++++++*/
+    /**+++++++++++++++++++++++++++++++++++++ Area inserted  code ++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 
     View fragment_camera_view;
@@ -839,7 +839,6 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
     @Override
     public void onDetach() {
         super.onDetach();

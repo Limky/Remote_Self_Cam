@@ -23,8 +23,19 @@
             android:id="@+id/photo_galleryBtn"
             android:layout_toRightOf="@+id/camera_btn"/>
 
+        <Button
+            android:id="@+id/MyLocationBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MyLocation"
+            android:layout_below="@+id/photo_galleryBtn"
+            android:layout_centerHorizontal="true"/>
+
+
+
 
     </RelativeLayout>
+
 
 
 </FrameLayout>

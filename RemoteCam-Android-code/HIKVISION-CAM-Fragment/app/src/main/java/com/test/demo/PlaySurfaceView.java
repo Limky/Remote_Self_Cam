@@ -1,22 +1,19 @@
 package com.test.demo;
 
-import org.MediaPlayer.PlayM4.Player;
-
-import com.hikvision.netsdk.HCNetSDK;
-import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
-import com.hikvision.netsdk.RealPlayCallBack;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.os.Build;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import android.widget.FrameLayout;
+
+import com.hikvision.netsdk.HCNetSDK;
+import com.hikvision.netsdk.NET_DVR_PREVIEWINFO;
+import com.hikvision.netsdk.RealPlayCallBack;
+
+import org.MediaPlayer.PlayM4.Player;
 
 @SuppressLint("NewApi")
 public class PlaySurfaceView extends SurfaceView implements Callback {

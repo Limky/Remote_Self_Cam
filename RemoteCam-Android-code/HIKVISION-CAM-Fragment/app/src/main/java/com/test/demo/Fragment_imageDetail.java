@@ -1,27 +1,29 @@
 package com.test.demo;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link Fragment_imageDetail.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Fragment_imageDetail#newInstance} factory method to
+ * Use the {@link Fragment_imageDetail#} factory method to
  * create an instance of this fragment.
  */
 public class Fragment_imageDetail extends Fragment {
@@ -38,42 +40,27 @@ public class Fragment_imageDetail extends Fragment {
     FragmentManager manager;
     FragmentTransaction transaction;
     private Context mContext = null;
-    private final int imgWidth = 320;
-    private final int imgHeight = 300;
+
+    PhotoViewAttacher mAttacher;
+    RelativeLayout DetailLayout;
+    BackPressCloseHandler backPressCloseHandler;
+    ViewPager pager;
+    int currentIndex;
+    ArrayList<ImageObject> imagesList;
 
     private OnFragmentInteractionListener mListener;
 
-    public Fragment_imageDetail() {
+    public Fragment_imageDetail(ArrayList<ImageObject> param1, int param2) {
+        this.imagesList = param1;
+        this.currentIndex = param2;
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_imageDetail.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Fragment_imageDetail newInstance(String param1, String param2) {
-        Fragment_imageDetail fragment = new Fragment_imageDetail();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
 
-            Log.d("mParam1","mParam1 = "+mParam1);
-            Log.d("mParam2","mParam2 = "+mParam2);
         }
     }
 
@@ -82,33 +69,17 @@ public class Fragment_imageDetail extends Fragment {
                              Bundle savedInstanceState) {
         View imageDetailView = inflater.inflate(R.layout.fragment_imagedetail, container, false);
         mContext = getActivity();
-        manager = getFragmentManager();
-        transaction = manager.beginTransaction();
 
-        /** 전송메시지 */
-        String imgPath = mParam1;
+        DetailLayout = (RelativeLayout) imageDetailView.findViewById(R.id.DetailLayout);
 
-        //** 완성된 이미지 보여주기  *//*
-      /*  BitmapFactory.Options bfo = new BitmapFactory.Options();
-        bfo.inSampleSize = 10;
-        ImageView iv = (ImageView) imageDetailView.findViewById(R.id.imageView);
-        Bitmap bm = BitmapFactory.decodeFile(imgPath, bfo);
-        Bitmap resized = Bitmap.createScaledBitmap(bm,imgWidth, imgHeight, true);
-        iv.setImageBitmap(resized);*/
+        Log.i("imagesList","imagesList = "+imagesList.get(currentIndex).getImagePath());
+        Log.i("currentIndex","currentIndex = "+currentIndex);
 
-        Bitmap bmp = BitmapFactory.decodeFile(imgPath);
-        ImageView iv = (ImageView) imageDetailView.findViewById(R.id.imageView);
-        iv.setImageBitmap(bmp);
+        pager= (ViewPager)imageDetailView.findViewById(R.id.pager);
+        MyPageAdapter adapter= new MyPageAdapter(getActivity().getLayoutInflater(),imagesList);
+        pager.setAdapter(adapter);
+        pager.setCurrentItem(currentIndex);
 
-        /** 리스트로 가기 버튼 */
-        Button btn = (Button)imageDetailView.findViewById(R.id.btn_back);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().popBackStack();
-       /*         transaction.replace(R.id.replacedLayout, new BlankFragment_Album()).commit();*/
-            }
-        });
 
         return imageDetailView;
 
@@ -122,13 +93,12 @@ public class Fragment_imageDetail extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) activity;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(activity.toString() + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -138,16 +108,7 @@ public class Fragment_imageDetail extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

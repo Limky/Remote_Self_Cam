@@ -1,55 +1,34 @@
 package com.test.demo;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements Fragment_Main.OnFragmentInteractionListener,Fragment_Camera.OnFragmentInteractionListener, Fragment_Gallery.OnFragmentInteractionListener,Fragment_imageDetail.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements Fragment_Main.OnFragmentInteractionListener,Fragment_Camera.OnFragmentInteractionListener, Fragment_Gallery.OnFragmentInteractionListener,Fragment_imageDetail.OnFragmentInteractionListener{
 
 
     private Button ip_cameraBtn;
     long backKeyPressedTime = 0;
     private Toast toast;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        transaction.replace(R.id.replacedLayout, new Fragment_Main()).commit();
+            transaction.replace(R.id.replacedLayout, new Fragment_Main()).commit();
 
-
-
-
-   /*     ip_cameraBtn = (Button)findViewById(R.id.IP_CAMERABTN);
-        ip_cameraBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(getApplicationContext(),"카메라 버튼 클릭.",Toast.LENGTH_LONG).show();
-
-                Intent intentSubActivity = new Intent(MainActivity.this,DemoActivity.class);
-                startActivity(intentSubActivity);
-            }
-        });*/
     }
-
-
 
 
 
@@ -57,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements Fragment_Main.OnF
     public void onBackPressed(){
         //  Toast.makeText(getApplicationContext(), "back button click", Toast.LENGTH_SHORT).show();
         int count = 0;
+
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
             count = getFragmentManager().getBackStackEntryCount();
         }

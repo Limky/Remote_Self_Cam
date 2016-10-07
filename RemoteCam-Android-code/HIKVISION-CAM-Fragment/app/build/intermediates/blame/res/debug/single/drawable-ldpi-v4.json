@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\SQISOFT\\AndroidStudioProjects\\SimpleDemo1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\dx.jpg",
+        "source": "C:\\Users\\SQISOFT\\AndroidStudioProjects\\SimpleDemo1\\app\\src\\main\\res\\drawable-ldpi\\dx.jpg"
+    },
+    {
         "merged": "C:\\Users\\SQISOFT\\AndroidStudioProjects\\SimpleDemo1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\icon.png",
         "source": "C:\\Users\\SQISOFT\\AndroidStudioProjects\\SimpleDemo1\\app\\src\\main\\res\\drawable-ldpi\\icon.png"
     }

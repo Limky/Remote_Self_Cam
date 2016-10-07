@@ -1,7 +1,5 @@
 package com.test.demo;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,12 +36,16 @@ public class Fragment_Main extends Fragment {
 
     FragmentManager manager;
     FragmentTransaction transaction;
+    String go = "init";
 
+    public Fragment_Main(String go) {
+        this.go = go;
+        // Required empty public constructor
+    }
 
     public Fragment_Main() {
         // Required empty public constructor
     }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -104,6 +106,13 @@ public class Fragment_Main extends Fragment {
         });
 
 
+        Button MyLocationBtn = (Button) fragment_main_view.findViewById(R.id.MyLocationBtn);
+        MyLocationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         return fragment_main_view;
@@ -136,18 +145,10 @@ public class Fragment_Main extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
