@@ -24,7 +24,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +80,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     private int				m_iChanNum				= 0;				//channel number
     private static PlaySurfaceView [] playView = new PlaySurfaceView[4];
 
-    private final String 	TAG						= "DemoActivity";
+    private final String 	TAG						= "DemoActivity_HIK";
 
     private boolean			m_bTalkOn				= false;
     private boolean			m_bPTZL					= false;
@@ -94,18 +94,20 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
     View fragment_camera_view;
     Button CameraActionBtn,cancel_Btn,saveImageBtn;
     String  fileName;
-    LinearLayout saveLayout;
-    ImageView capture_imageView;
+    RelativeLayout saveLayout,widget_Play;
+    ImageView capture_imageView,loading_back;
     Bitmap bitmap;
-    TextView timerTextView;
+    TextView timerTextView,infoView,ingTextView,availabletime;
     TimerAsyncTask task;
     ImageView animatedImage;
     Animation animation;
+    TextView imageTitleTextView;
 
     boolean asyncStatus = true;
 
-    private String uri ="http://192.168.2.245/Streaming/channels/3/picture";
+    private String uri ="http://220.76.251.180/Streaming/channels/3/picture";
     private Bitmap bit = null;
+
 
     public Fragment_Camera() {
         // Required empty public constructor
@@ -206,10 +208,16 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         cancel_Btn = (Button)fragment_camera_view.findViewById(R.id.cancel_Btn);
         saveImageBtn = (Button)fragment_camera_view.findViewById(R.id.saveImageBtn);
         CameraActionBtn = (Button) fragment_camera_view.findViewById(R.id.CameraAction);
-        saveLayout = (LinearLayout) fragment_camera_view.findViewById(R.id.CameraSave);
+        saveLayout = (RelativeLayout) fragment_camera_view.findViewById(R.id.view_camera_buttonLayout);
         capture_imageView = (ImageView) fragment_camera_view.findViewById(R.id.capture_imageView);
         timerTextView = (TextView) fragment_camera_view.findViewById(R.id.timer);
         animatedImage = (ImageView) fragment_camera_view.findViewById(R.id.animatedImage);
+        infoView = (TextView) fragment_camera_view.findViewById(R.id.infoTextView);
+        ingTextView = (TextView) fragment_camera_view.findViewById(R.id.ingTextView);
+        availabletime = (TextView) fragment_camera_view.findViewById(R.id.availabletime);
+        widget_Play = (RelativeLayout) fragment_camera_view.findViewById(R.id.widget_Play);
+        imageTitleTextView = (TextView) fragment_camera_view.findViewById(R.id.image_title);
+        loading_back = (ImageView) fragment_camera_view.findViewById(R.id.loading_back);
     }
 
     private void setListeners()
@@ -450,7 +458,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
             Log.e(TAG, "HKNetDvrDeviceInfoV30 new is failed!");
             return -1;
         }
-        String strIP = "192.168.2.245";
+        String strIP = "220.76.251.180";
         int	nPort = 8000;
         String strUser = "admin";
         String strPsd = "1234qwer";
@@ -583,6 +591,8 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         {
             CameraActionBtn.setVisibility(View.GONE);
             animatedImage.startAnimation(animation);
+            infoView.setVisibility(View.GONE);
+            ingTextView.setVisibility(View.VISIBLE);
             task = new TimerAsyncTask();
             task.execute();
 
@@ -602,6 +612,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
                 animatedImage.setAnimation(null);
                 animatedImage.setVisibility(View.GONE);
                 timerTextView.setVisibility(View.GONE);
+
                 change_capture_layout(true);
                 changeLayout(true);
 
@@ -643,6 +654,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         protected Void doInBackground(Integer... params) {
            while (asyncStatus) {
                try {
+                   Sub_timer_thread.sleep(500);
                    if(timeNumber == 3) {
                        Sub_timer_thread.sleep(1000);
                        asyncStatus = false;
@@ -679,6 +691,16 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
     public class WebGetImage extends AsyncTask<Void, Void, Void> {
 
+        String image_title = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Date day = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA);
+             image_title = String.valueOf(sdf.format(day));
+        }
+
         @Override
         protected Void doInBackground(Void... params) {
             // 네트워크에 접속해서 데이터를 가져옴
@@ -713,6 +735,7 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         protected  void onPostExecute(Void nothing){
             capture_imageView.setImageBitmap(bit);
             capture_imageView.invalidate();
+            imageTitleTextView.setText(image_title);
         }
 
 
@@ -796,11 +819,13 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
 
     private void change_capture_layout(boolean b){
         if(b){
+     //       loading_back.setVisibility(View.VISIBLE);
             capture_imageView.setVisibility(View.VISIBLE);
             m_osurfaceView.setVisibility(View.GONE);
 
 
         }else{
+//            loading_back.setVisibility(View.GONE);
             capture_imageView.setVisibility(View.GONE);
             m_osurfaceView.setVisibility(View.VISIBLE);
 
@@ -813,9 +838,17 @@ public class Fragment_Camera extends Fragment implements SurfaceHolder.Callback 
         if(b) {
             CameraActionBtn.setVisibility(View.GONE);
             saveLayout.setVisibility(View.VISIBLE);
+            ingTextView.setVisibility(View.GONE);
+            imageTitleTextView.setVisibility(View.VISIBLE);
+
         } else {
             CameraActionBtn.setVisibility(View.VISIBLE);
             saveLayout.setVisibility(View.GONE);
+            infoView.setVisibility(View.VISIBLE);
+            imageTitleTextView.setVisibility(View.GONE);
+
+
+
         }
     }
 

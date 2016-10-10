@@ -1,41 +1,98 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.test.demo.Fragment_Main">
 
-    <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:orientation="horizontal"
+        android:id="@+id/tabLayout"
+        android:gravity="center_horizontal"
+        android:background="@drawable/layouttab"
+        android:padding="6dp"
+        android:layout_margin="14dp"
+        android:layout_marginTop="20dp"
+        >
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:text="셀카촬영"
+            android:textColor="#ffffff"
+            android:background="@drawable/button"
+            android:id="@+id/cancel_Btn"
+            android:layout_marginRight="50dp"/>
 
         <Button
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="IPCamera"
-            android:id="@+id/camera_btn" />
+            android:layout_height="40dp"
+            android:textColor="#4d4d4d"
+            android:text="MY셀카앨범"
+            android:background="@drawable/unselectedbutton"
+            android:id="@+id/photo_galleryBtn"/>
 
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="PhotoGallery"
-            android:id="@+id/photo_galleryBtn"
-            android:layout_toRightOf="@+id/camera_btn"/>
 
-        <Button
-            android:id="@+id/MyLocationBtn"
+    </LinearLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/camera_btn"
+        android:padding="10dp">
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MyLocation"
-            android:layout_below="@+id/photo_galleryBtn"
-            android:layout_centerHorizontal="true"/>
+            android:text="오죽헌"
+            android:textSize="20dp"
+            android:textColor="#212121"
+            android:textStyle="bold"
+            android:id="@+id/tourTitle"
+            android:layout_marginLeft="15dp"
+            android:layout_above="@+id/descr"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="심사임당과 율곡이이가 태어난 곳"
+            android:textSize="17dp"
+            android:textColor="#757575"
+            android:id="@+id/descr"
+            android:layout_marginLeft="15dp"
+            android:layout_above="@+id/tourImageView"/>
 
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/tourImageView"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="22dp"
+            android:layout_marginTop="0dp"
 
+           />
 
     </RelativeLayout>
 
 
 
-</FrameLayout>
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="촬영시작"
+        android:id="@+id/camera_btn"
+        android:textColor="#ffffff"
+        android:background="@drawable/button"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

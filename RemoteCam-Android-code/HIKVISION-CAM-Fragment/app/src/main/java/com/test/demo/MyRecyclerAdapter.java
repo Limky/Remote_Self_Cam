@@ -1,10 +1,10 @@
 package com.test.demo;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -26,15 +26,17 @@ import java.util.ArrayList;
 public class MyRecyclerAdapter extends RecyclerView.Adapter{
 
     private ArrayList<ImageObject> imagesList;
-    private Activity context;
+    private Fragment adapterContext;
     ImageObject dataItem;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
+    private  Context context;
 
     // Adapter constructor
-    public MyRecyclerAdapter(ArrayList<ImageObject> imagesList, Activity context) {
-        this.context = context;
+    public MyRecyclerAdapter(ArrayList<ImageObject> imagesList, Fragment adapterContext, Context context) {
+        this.adapterContext = adapterContext;
         this.imagesList = imagesList;
+        this.context = context;
     }
 
     @Override
@@ -58,30 +60,27 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
             @Override
             public void onClick(View v) {
                 Log.d("getImagePath","getImagePath = "+ imagesList.get(position).getImagePath());
-/*
-                fragmentManager = context.getFragmentManager();
-                transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.replacedLayout,Fragment_imageDetail.newInstance("13dd","asd"));*/
 
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("imagePath",imagesList.get(position).getImagePath());
-                intent.putExtra("currentIndex",position);
-                intent.putParcelableArrayListExtra("imagesList",imagesList);
-                ((Activity) context).startActivity(intent);
-                ((Activity) context).finish();
+
+
+                fragmentManager = adapterContext.getFragmentManager();
+                transaction = fragmentManager.beginTransaction();
+                Fragment fragment = new Fragment_imageDetail(imagesList,position);
+                transaction.add(R.id.replacedLayout, fragment,"LIMKY").addToBackStack("tag").commit();
+
+
+
             }
         });
 
         //   myViewHolder.imageView.setImageBitmap(BitmapFactory.decodeFile(dataItem.getImagePath()));
 
-
         Uri uri = Uri.fromFile(new File(imagesList.get(position).getImagePath()));
         Picasso.with(context)
                 .load(uri)
                 .placeholder(R.drawable.dx)
-                .resize(452,432)
+                .resize(352,332)
                 .into(myViewHolder.imageView);
-
     }
 
     @Override

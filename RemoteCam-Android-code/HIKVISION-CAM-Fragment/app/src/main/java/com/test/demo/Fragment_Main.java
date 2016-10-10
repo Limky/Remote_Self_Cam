@@ -1,6 +1,7 @@
 package com.test.demo;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 /**
@@ -37,6 +39,7 @@ public class Fragment_Main extends Fragment {
     FragmentManager manager;
     FragmentTransaction transaction;
     String go = "init";
+    ImageView tourImageView;
 
     public Fragment_Main(String go) {
         this.go = go;
@@ -78,7 +81,10 @@ public class Fragment_Main extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragment_main_view = inflater.inflate(R.layout.fragment_main, container, false);
+        tourImageView = (ImageView)  fragment_main_view.findViewById(R.id.tourImageView);
 
+
+        tourImageView.setImageBitmap( BitmapFactory.decodeResource(getResources(),R.drawable.main_tour_img_2));
 
          manager = getFragmentManager();
          transaction = manager.beginTransaction();
@@ -105,14 +111,6 @@ public class Fragment_Main extends Fragment {
             }
         });
 
-
-        Button MyLocationBtn = (Button) fragment_main_view.findViewById(R.id.MyLocationBtn);
-        MyLocationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
 
         return fragment_main_view;

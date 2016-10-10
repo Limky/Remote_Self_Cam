@@ -43,12 +43,22 @@ public class Fragment_imageDetail extends Fragment {
 
     PhotoViewAttacher mAttacher;
     RelativeLayout DetailLayout;
-    BackPressCloseHandler backPressCloseHandler;
     ViewPager pager;
     int currentIndex;
     ArrayList<ImageObject> imagesList;
 
     private OnFragmentInteractionListener mListener;
+
+    // TODO: Rename and change types and number of parameters
+    public static Fragment_Camera newInstance(String param1, String param2) {
+        Fragment_Camera fragment = new Fragment_Camera();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     public Fragment_imageDetail(ArrayList<ImageObject> param1, int param2) {
         this.imagesList = param1;

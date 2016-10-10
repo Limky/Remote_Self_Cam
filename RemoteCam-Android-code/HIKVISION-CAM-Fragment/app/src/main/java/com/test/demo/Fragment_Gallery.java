@@ -91,7 +91,7 @@ public class Fragment_Gallery extends Fragment {
 
         getThumbInfo();
 
-        MyRecyclerAdapter myAdapter = new MyRecyclerAdapter(imagesList,getActivity());
+        MyRecyclerAdapter myAdapter = new MyRecyclerAdapter(imagesList,this,getActivity());
         recyclerView.setAdapter(myAdapter);
 
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));

@@ -15,7 +15,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 /**
  * Created by SQISOFT on 2016-10-07.
  */
-public class MyPageAdapter extends PagerAdapter {
+public class MyPageAdapter extends PagerAdapter{
 
     LayoutInflater inflater;
     ArrayList<ImageObject> imagesList;
@@ -26,6 +26,7 @@ public class MyPageAdapter extends PagerAdapter {
         this.imagesList = imagesList;
         this.inflater=inflater;
     }
+
 
     //PagerAdapter가 가지고 잇는 View의 개수를 리턴
     //보통 보여줘야하는 이미지 배열 데이터의 길이를 리턴
@@ -57,7 +58,8 @@ public class MyPageAdapter extends PagerAdapter {
         //현재 position에 해당하는 이미지를 setting
 
         Bitmap currentBmp = BitmapFactory.decodeFile(imagesList.get(position).getImagePath());
-        img.setImageBitmap(currentBmp);
+        Bitmap resized = Bitmap.createScaledBitmap(currentBmp,1920, 1080, true);
+        img.setImageBitmap(resized);
         mAttacher = new PhotoViewAttacher(img);
         //ViewPager에 만들어 낸 View 추가
         container.addView(view);
@@ -87,5 +89,17 @@ public class MyPageAdapter extends PagerAdapter {
         // TODO Auto-generated method stub
         return v==obj;
     }
+
+  /*  // pointerIndex out of range
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        try {
+            return super.onInterceptTouchEvent(ev);
+        } catch (IllegalArgumentException e) {
+            if (RingQConfig.DEBUG) e.printStackTrace();
+            return false;
+        }
+    }*/
+
 
 }
