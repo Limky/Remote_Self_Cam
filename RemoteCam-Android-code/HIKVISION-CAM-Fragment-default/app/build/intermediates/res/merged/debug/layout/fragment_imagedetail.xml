@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.test.demo.Fragment_imageDetail"
+android:background="#000000">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        android:visibility="gone">
+
+        <Button android:id="@+id/btn_previous"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PREVIOUS"
+            android:textSize="12sp"
+            android:onClick="mOnClick"/>
+
+        <Button android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Next"
+            android:textSize="12sp"
+            android:onClick="mOnClick"/>
+
+    </LinearLayout>
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RelativeLayout
+        android:id="@+id/view_camera_buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to the List"
+            android:id="@+id/btn_back"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/DetailLayout"
+        android:background="@color/cardview_shadow_end_color">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:scaleType="fitXY"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:layout_marginTop="90dp"
+            android:id="@+id/pager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY">
+        </android.support.v4.view.ViewPager>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
