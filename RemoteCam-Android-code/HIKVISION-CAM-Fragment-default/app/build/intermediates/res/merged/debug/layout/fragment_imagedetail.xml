@@ -4,7 +4,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.test.demo.Fragment_imageDetail"
+tools:context=".remote.fragment.Fragment_imageDetail"
 android:background="#000000">
 
 
@@ -71,11 +71,9 @@ android:background="#000000">
             />
 
         <android.support.v4.view.ViewPager
-            android:layout_marginTop="90dp"
             android:id="@+id/pager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
             android:layout_centerVertical="true"
             android:scaleType="fitXY">
         </android.support.v4.view.ViewPager>

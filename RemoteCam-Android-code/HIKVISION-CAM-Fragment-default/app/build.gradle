@@ -4,7 +4,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.test.demo"
+        applicationId "com.test.sqisoft"
         minSdkVersion 10
         targetSdkVersion 23
     }

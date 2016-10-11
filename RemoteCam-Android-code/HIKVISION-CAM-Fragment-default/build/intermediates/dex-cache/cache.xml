@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\SQISOFT\AndroidStudioProjects\RemoteCam\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a98efccff5e747d4c9acb2e607146ef89d96a870">
+        <dex dex="C:\Users\SQISOFT\AndroidStudioProjects\RemoteCam\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c6281e2ccfe42650e006a9b27c5cc3f98a13a97d\classes.dex" />
+    </item>
+
+</items>
