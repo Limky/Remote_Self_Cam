@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\dx.jpg",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-ldpi\\dx.jpg"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\buttonshadow.xml",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-ldpi\\buttonshadow.xml"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\icon.png",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-ldpi\\icon.png"
+    }
+]
