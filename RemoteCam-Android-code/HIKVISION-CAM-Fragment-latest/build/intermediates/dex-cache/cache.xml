@@ -1,3 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\libs\HCNetSDK.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="14fcbf8a4c188cb9cb739a2020eb6a8fe7594461">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\2\HCNetSDK_26cb60bb7290a2f24bbd7340215f1a8fbb396b54\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_5c6c564acbf726f0a4ebf064eb255028b052e64c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.0.1_91a40105c1d2b1570efa94b473af57bedd00c14b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_125980e78d45607b2dc98813fa5f98c21e973895\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.github.chrisbanes.photoview\library\1.2.3\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="81aa0e8e77d948204aa6754019c6f3c04dd922e3">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.chrisbanes.photoview-library-1.2.3_dd01435a0bc7245064a6f2d549eeff4f0455f657\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\libs\AudioEngineSDK.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fc8c572594f6d1d4781cdb25a7016ef7f7000d0d">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\2\AudioEngineSDK_b1f3cf5c6d08bee6f154e0d064a72bd6a7a05d46\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.0\7ff0e000d1e27e356567f56c92af3b8ab912636f\picasso-2.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.0_d3251c17aa47f4d93359e6f33e09366b023c9759\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_fb02bcf090936c55afa5d5f24ce4ecc7ee98a039\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="cb0d2f5c955f0344a78156be93e9120918bc0eaf">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d8d37b979bf235a2f15583ab9090d600e8dae89b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_6aebf3ecec5326402d03d2a5a7a35efc459b3fd9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\libs\volley.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="89b779c6e0b40d19bcd48156825823d37f4dfb35">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\2\volley_8976e3b83cc5cb379a0c4bf7b7d64b7238764d51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Administrator\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_c9fae43cda2e1c04b2ab0de43a8f148b5b1a92fa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\libs\gson-2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5483f08fca66fedcb26b5b7a5c03e078aa81bb5e">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.4_2ad35abfa9cc72c3b19286007ba2fbf4d8199eda\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.0.1_e8888216a9ef4d653c2f4205393694a124ef4f3b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\libs\PlayerSDK.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="27bfbf2661faab3073e3ff5881fad8281eaea1c1">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\2\PlayerSDK_37fe8726a401eb506f549de61b1637d9f7c17a3d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b6648bc4e50565832e3a9b172ae5f7c12edba3e9">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c5de051e27230240cb289d3018ec4d7980cb547e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_6bc241bbd818aff2a70c77afdb2c9c201a8fac3e\classes.dex" />
+    </item>
+
+</items>

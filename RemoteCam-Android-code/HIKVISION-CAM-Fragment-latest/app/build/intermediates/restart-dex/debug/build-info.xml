@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="21"
+    abi="x86"
+    api-level="22"
     density="xxhdpi"
-    format="7"
-    timestamp="8936221307081"
-    token="2784006490057295200" >
+    format="8"
+    plugin-version="2.2.1"
+    timestamp="20543218966733"
+    token="-3926418810690578698"
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="2046" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="3522" />
     <task
         name="verifier"
-        duration="0" />
+        duration="122" />
 
     <artifact
-        location="C:\RemoteCam\app\build\intermediates\res\resources-debug.ap_"
-        type="RESOURCES" />
+        location="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="8474527914227" >
+    <build
+        timestamp="20543218966733"
+        verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\RemoteCam\app\build\outputs\apk\app-debug.apk"
+            location="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="8936221307081" >
-        <artifact
-            location="C:\RemoteCam\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
     </build>
 
 </instant-run>
