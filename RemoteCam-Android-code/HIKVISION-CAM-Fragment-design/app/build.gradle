@@ -9,8 +9,8 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.test.sqisoft"
-        minSdkVersion 10
+        applicationId "com.sqisoft.remote"
+        minSdkVersion 11
         targetSdkVersion 23
     }
 
@@ -35,4 +35,5 @@ dependencies {
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
     compile files('libs/gson-2.4.jar')
     compile files('libs/volley.jar')
+    compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 }

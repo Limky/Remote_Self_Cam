@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="country_names">
+        <item>앨범 전체</item>
+        <item>Pakistan</item>
+        <item>China</item>
+        <item>Singapore</item>
+        <item>Nepal</item>
+    </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>

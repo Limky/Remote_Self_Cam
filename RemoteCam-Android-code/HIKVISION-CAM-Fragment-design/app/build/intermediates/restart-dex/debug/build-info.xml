@@ -4,45 +4,30 @@
     api-level="21"
     density="xxhdpi"
     format="7"
-    timestamp="34266335473393"
+    timestamp="30465621379598"
     token="2784006490057295200" >
 
     <task
         name="javac"
-        duration="225" />
+        duration="654" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="17" />
+        duration="666" />
     <task
         name="verifier"
-        duration="2" />
+        duration="170" />
 
     <artifact
-        location="C:\RemoteCam\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-        type="DEX" />
+        location="C:\RemoteCam\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="33224065588133" >
+    <build timestamp="30465621379598" >
         <artifact
             location="C:\RemoteCam\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="33508101310389" >
-        <artifact
-            location="C:\RemoteCam\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
-    <build timestamp="33922440836415" >
-        <artifact
-            location="C:\RemoteCam\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
-            type="DEX" />
-    </build>
-    <build timestamp="34266335473393" >
-        <artifact
-            location="C:\RemoteCam\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

@@ -48,24 +48,28 @@
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
     },
     {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\main_tour_img_2.jpg",
         "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\main_tour_img_2.jpg"
     },
     {
-        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png",
-        "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png"
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\timericon.png",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\timericon.png"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_voice_search_api_mtrl_alpha.png",
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_ic_voice_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\availabletime.xml",
-        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\availabletime.xml"
-    },
-    {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\person.png",
         "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\person.png"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\availabletime.xml",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\availabletime.xml"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
@@ -76,12 +80,12 @@
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\button.xml",
-        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\button.xml"
-    },
-    {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png",
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\button.xml",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\button.xml"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_menu_share_mtrl_alpha.png",
@@ -214,10 +218,6 @@
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\abc_ic_clear_mtrl_alpha.png",
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-hdpi-v4\\abc_ic_clear_mtrl_alpha.png"
-    },
-    {
-        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\capture_btn.png",
-        "source": "C:\\RemoteCam\\app\\src\\main\\res\\drawable-hdpi\\capture_btn.png"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\appbackground3.jpg",

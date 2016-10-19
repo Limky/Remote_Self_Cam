@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.test.sqisoft.remote.fragment.FragmentUserConfirm">
+    tools:context="com.sqisoft.remote.fragment.FragmentUserConfirm">
 
     <!-- TODO: Update blank fragment layout -->
  <LinearLayout
@@ -59,7 +59,7 @@
              android:layout_weight="1"
              android:layout_height="wrap_content"
              android:text="취소"
-             android:id="@+id/cancel_Btn"
+             android:id="@+id/cancel_remote_btn"
              android:background="@drawable/user_confirm_left_button"
              android:textColor="#ea3986"
              android:textSize="18dp"
@@ -70,7 +70,7 @@
              android:layout_weight="1"
              android:layout_height="wrap_content"
              android:text="공개하기"
-             android:id="@+id/saveImageBtn"
+             android:id="@+id/save_remote_image_btn"
              android:background="@drawable/user_confirm_right_button"
              android:textColor="#ea3986"
              android:textSize="18dp"/>

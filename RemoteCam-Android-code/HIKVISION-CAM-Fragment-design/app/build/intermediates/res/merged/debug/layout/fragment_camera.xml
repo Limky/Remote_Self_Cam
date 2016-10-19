@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".remote.fragment.FragmentCamera"
+    tools:context="com.sqisoft.remote.fragment.FragmentCamera"
     android:fillViewport="true" >
 
 
@@ -20,7 +20,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="192dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="45dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -32,7 +32,8 @@
                 android:id="@+id/sur_player"
                 android:layout_width="match_parent"
                 android:layout_height="192dp"
-                android:background="#0000ff00" />
+                android:background="#0000ff00"
+                android:layout_marginBottom="20dp"/>
 
             <ImageView
                 android:layout_margin="6dp"
@@ -91,7 +92,6 @@
             />
 
         <TextView
-            android:layout_marginTop="1dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -127,23 +127,33 @@
             android:layout_toEndOf="@+id/animation_circle_loading"
             android:visibility="gone"/>
 
+
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="3"
-        android:textSize="35dp"
-        android:id="@+id/timer"
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="105dp"
+        android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="94dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ea3986"
-        android:visibility="gone"
-        />
+        android:layout_centerInParent="true"
+        android:background="@drawable/timericon"
+        android:id="@+id/timer_layout"
+        android:visibility="gone">
 
+        <TextView
+            android:layout_marginBottom="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="3"
+            android:textSize="35dp"
+            android:id="@+id/timer"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:textColor="#ea3986" />
 
+    </RelativeLayout>
 
 
 </RelativeLayout>
