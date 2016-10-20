@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\git-anroid\\Remote_Self_Cam\\RemoteCam-Android-code\\HIKVISION-CAM-Fragment-latest\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\git-anroid\\Remote_Self_Cam\\RemoteCam-Android-code\\HIKVISION-CAM-Fragment-latest\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "C:\\RemoteCam\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

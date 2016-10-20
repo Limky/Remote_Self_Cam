@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\git-anroid\Remote_Self_Cam\RemoteCam-Android-code\HIKVISION-CAM-Fragment-latest\app\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\RemoteCam\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\RemoteCam\app\src\debug\shaders"/></dataSet></merger>

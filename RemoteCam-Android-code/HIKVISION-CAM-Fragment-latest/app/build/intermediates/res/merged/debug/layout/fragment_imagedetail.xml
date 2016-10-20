@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".remote.fragment.FragmentImageDetail"
-android:background="#000000">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sqisoft.remote.fragment.FragmentImageDetail"
+    android:background="#000000">
 
 
     <LinearLayout
@@ -73,7 +73,7 @@ android:background="#000000">
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_width="400dp"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:scaleType="fitXY">
         </android.support.v4.view.ViewPager>

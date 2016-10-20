@@ -3,11 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="14dp">
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="1dp"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:padding="3dp"/>
+
+        <TextView
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016.07.13"
+            android:textSize="15dp"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

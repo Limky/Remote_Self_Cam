@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp">
 
 
 <ImageView
@@ -38,17 +39,6 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/textview2" />
 
-    <Button
-        android:layout_marginBottom="30dp"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:background="@drawable/capturebtn"
-        android:id="@+id/camera_btn"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_below="@+id/textview2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp" />
 
 
 

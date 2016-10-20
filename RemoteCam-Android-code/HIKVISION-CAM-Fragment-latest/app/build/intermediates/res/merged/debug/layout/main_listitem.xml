@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#FFFFFF"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:divider="@null"
+        android:dividerHeight="0dp">
+
+
+        <TextView
+            android:id="@+id/index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="셀카존 001"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:background="#ea3986"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="오죽헌 입구"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/desc_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="강원도 강릉시 죽헌동(竹軒洞)에 있는 조선 중기의 목조건물."
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="5dp"/>
+
+
+        <ImageView
+            android:id="@+id/selfie_zone"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            />
+
+   </LinearLayout>
+
+
+
+</RelativeLayout>
+
+

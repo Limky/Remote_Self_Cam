@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".remote.activity.MainActivity"
+    tools:context="com.sqisoft.remote.activity.MainActivity"
     android:background="@drawable/appbackground3">
 
      <RelativeLayout
          android:layout_width="match_parent"
-         android:layout_height="50dp"
-         android:paddingTop="10dp"
+         android:layout_height="65dp"
+         android:paddingTop="20dp"
          android:paddingBottom="10dp"
          android:background="#FFFFFF"
          android:id="@+id/title_layout">
@@ -21,7 +21,9 @@
              android:id="@+id/button"
              android:layout_marginLeft="17dp"/>
 
-        <com.test.sqisoft.remote.view.TitleView
+
+
+        <com.sqisoft.remote.view.TitleView
             android:id="@+id/remotecamera_main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,6 +36,16 @@
             android:layout_toRightOf="@+id/button"
             android:layout_toEndOf="@+id/button" />
 
+         <Button
+             android:layout_width="30dp"
+             android:layout_height="28dp"
+             android:id="@+id/photo_gallery_Btn"
+             android:background="@drawable/person"
+             android:layout_alignParentTop="true"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentEnd="true"
+             android:layout_marginRight="10dp"/>
+
      </RelativeLayout>
 
 
@@ -42,6 +54,35 @@
             android:id="@+id/replacedLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/title_layout"/>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title_layout">
+
+
+            <FrameLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/navi_layout">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="셀피 메인"
+                    android:id="@+id/main_link_btn"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MY 앨범"
+                    android:id="@+id/my_album_link_btn"
+                    android:layout_gravity="right|center_vertical" />
+
+            </FrameLayout>
+        </FrameLayout>
+
+
+
+
+
 
 </RelativeLayout>
