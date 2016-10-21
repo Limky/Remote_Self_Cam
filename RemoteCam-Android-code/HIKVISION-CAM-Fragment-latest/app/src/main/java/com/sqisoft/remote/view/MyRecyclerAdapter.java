@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.sqisoft.remote.R;
-import com.sqisoft.remote.domain.ImageObject;
+import com.sqisoft.remote.domain.ServerImageObject;
 import com.sqisoft.remote.fragment.FragmentBase;
 import com.sqisoft.remote.fragment.FragmentImageDetail;
+import com.sqisoft.remote.manager.DataManager;
 import com.sqisoft.remote.util.FragmentUtil;
 import com.squareup.picasso.Picasso;
 
@@ -30,24 +32,25 @@ import java.util.ArrayList;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter{
 
-    private ArrayList<ImageObject> imagesList;
+    private ArrayList<ServerImageObject> serverImageObjects;
     private Fragment adapterContext;
-    ImageObject dataItem;
-    FragmentManager fragmentManager;
-    FragmentTransaction transaction;
+    private ServerImageObject dataItem;
+    private FragmentManager fragmentManager;
+    private  FragmentTransaction transaction;
     private  Context context;
 
     // Adapter constructor
-    public MyRecyclerAdapter(ArrayList<ImageObject> imagesList, Fragment adapterContext, Context context) {
+    public MyRecyclerAdapter(Fragment adapterContext, Context context) {
+        
         this.adapterContext = adapterContext;
-        this.imagesList = imagesList;
+        this.serverImageObjects = DataManager.getInstance().getServerImageObjects();
         this.context = context;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout, null);
+        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.server_gallery_item_layout, null);
 
         return new MyViewHolder(layoutView);
 
@@ -56,7 +59,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
 
-        dataItem = imagesList.get(position);
+        dataItem = serverImageObjects.get(position);
 
         // Casting the viewHolder to MyViewHolder so I could interact with the views
         MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
@@ -64,24 +67,21 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onClick(View v) {
-                Log.d("getImagePath","getImagePath = "+ imagesList.get(position).getImagePath());
-
-
+                Log.d("getmImagePath","getmImagePath = "+ serverImageObjects.get(position).getmImagePath());
 
                 fragmentManager = adapterContext.getFragmentManager();
                 transaction = fragmentManager.beginTransaction();
-                FragmentBase fragment = new FragmentImageDetail(imagesList,position);
+                FragmentBase fragment = new FragmentImageDetail(serverImageObjects,position);
                 FragmentUtil.addFragment(fragment);
               //  transaction.add(R.id.replacedLayout, fragment,"FImageDetail").addToBackStack(null).commit();
-
-
 
             }
         });
 
-        //   myViewHolder.imageView.setImageBitmap(BitmapFactory.decodeFile(dataItem.getImagePath()));
+        myViewHolder.mImageTttleTextView.setText(serverImageObjects.get(position).getmImageTitle());
 
-        Uri uri = Uri.fromFile(new File(imagesList.get(position).getImagePath()));
+
+        Uri uri = Uri.fromFile(new File(serverImageObjects.get(position).getmImagePath()));
         Picasso.with(context)
                 .load(uri)
                 .placeholder(R.drawable.dx)
@@ -92,19 +92,20 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemCount() {
 
-        return imagesList.size();
+        return serverImageObjects.size();
     }
 
     /** This is our ViewHolder class */
     public static class MyViewHolder extends RecyclerView.ViewHolder  {
 
         public ImageView imageView;
+        public TextView mImageTttleTextView;
 
         public MyViewHolder(View itemView) {
             super(itemView); // Must call super() first
 
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
-
+            mImageTttleTextView = (TextView) itemView.findViewById(R.id.server_image_title);
 
         }
 

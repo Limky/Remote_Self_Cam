@@ -16,13 +16,15 @@ import com.sqisoft.remote.fragment.FragmentGallery;
 import com.sqisoft.remote.fragment.FragmentImageDetail;
 import com.sqisoft.remote.fragment.FragmentMain;
 import com.sqisoft.remote.fragment.FragmentMyAlbum;
+import com.sqisoft.remote.fragment.FragmentMyAlbumImageDetail;
 import com.sqisoft.remote.fragment.FragmentUserConfirm;
 import com.sqisoft.remote.util.FragmentUtil;
 import com.sqisoft.remote.util.Log;
 import com.sqisoft.remote.view.TitleView;
 
 public class MainActivity extends AppCompatActivity implements FragmentMain.OnFragmentInteractionListener,FragmentCamera.OnFragmentInteractionListener,
-        FragmentGallery.OnFragmentInteractionListener,FragmentImageDetail.OnFragmentInteractionListener,FragmentUserConfirm.OnFragmentInteractionListener,FragmentMyAlbum.OnFragmentInteractionListener{
+        FragmentGallery.OnFragmentInteractionListener,FragmentImageDetail.OnFragmentInteractionListener,FragmentUserConfirm.OnFragmentInteractionListener,FragmentMyAlbum.OnFragmentInteractionListener
+,FragmentMyAlbumImageDetail.OnFragmentInteractionListener{
 
 
     private Button ip_cameraBtn;
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
             if (backStackCount == 1) {
                 //Main 처리
                 toast = Toast.makeText(getApplicationContext(), "메인 처리", Toast.LENGTH_SHORT);
-
+                naviLayout.setVisibility(View.VISIBLE);
            //     finish();
             }
         } else {

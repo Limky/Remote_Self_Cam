@@ -72,12 +72,12 @@
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
-        "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_media_cancel_action.xml"
-    },
-    {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_media_cancel_action.xml"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
@@ -100,16 +100,20 @@
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_media_action.xml"
     },
     {
-        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_layout.xml",
-        "source": "C:\\RemoteCam\\app\\src\\main\\res\\layout\\item_layout.xml"
-    },
-    {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
         "source": "C:\\RemoteCam\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\server_gallery_item_layout.xml",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\layout\\server_gallery_item_layout.xml"
+    },
+    {
+        "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_fragment_my_album_image_detail.xml",
+        "source": "C:\\RemoteCam\\app\\src\\main\\res\\layout\\fragment_fragment_my_album_image_detail.xml"
     },
     {
         "merged": "C:\\RemoteCam\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",

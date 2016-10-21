@@ -4,7 +4,7 @@
     api-level="21"
     density="xxhdpi"
     format="7"
-    timestamp="33505958247887"
+    timestamp="32581445068716"
     token="2784006490057295200" >
 
     <task
@@ -24,12 +24,12 @@
         location="C:\RemoteCam\app\build\intermediates\res\resources-debug.ap_"
         type="RESOURCES" />
 
-    <build timestamp="33431323923873" >
+    <build timestamp="32461914465267" >
         <artifact
             location="C:\RemoteCam\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="33505958247887" >
+    <build timestamp="32581445068716" >
         <artifact
             location="C:\RemoteCam\app\build\intermediates\res\resources-debug.ap_"
             type="RESOURCES" />

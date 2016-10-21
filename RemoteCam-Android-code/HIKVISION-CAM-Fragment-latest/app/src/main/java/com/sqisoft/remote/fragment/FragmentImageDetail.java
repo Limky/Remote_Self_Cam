@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.sqisoft.remote.R;
-import com.sqisoft.remote.domain.ImageObject;
+import com.sqisoft.remote.domain.ServerImageObject;
 import com.sqisoft.remote.view.MyPageAdapter;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class FragmentImageDetail extends FragmentBase {
     RelativeLayout DetailLayout;
     ViewPager pager;
     int currentIndex;
-    ArrayList<ImageObject> imagesList;
+    ArrayList<ServerImageObject> imagesList;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +64,7 @@ public class FragmentImageDetail extends FragmentBase {
     }
 
 
-    public FragmentImageDetail(ArrayList<ImageObject> param1, int param2) {
+    public FragmentImageDetail(ArrayList<ServerImageObject> param1, int param2) {
         this.imagesList = param1;
         this.currentIndex = param2;
         // Required empty public constructor
@@ -90,7 +90,7 @@ public class FragmentImageDetail extends FragmentBase {
 
         DetailLayout = (RelativeLayout) imageDetailView.findViewById(R.id.DetailLayout);
 
-        Log.i("imagesList","imagesList = "+imagesList.get(currentIndex).getImagePath());
+        Log.i("imagesList","imagesList = "+imagesList.get(currentIndex).getmImagePath());
         Log.i("currentIndex","currentIndex = "+currentIndex);
 
         pager= (ViewPager)imageDetailView.findViewById(R.id.pager);

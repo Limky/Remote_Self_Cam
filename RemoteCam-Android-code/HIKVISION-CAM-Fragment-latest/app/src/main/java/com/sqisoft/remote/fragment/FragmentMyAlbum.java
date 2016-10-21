@@ -1,17 +1,20 @@
 package com.sqisoft.remote.fragment;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.sqisoft.remote.R;
-import com.sqisoft.remote.domain.MyImageObject;
+import com.sqisoft.remote.domain.LocalImageObject;
+import com.sqisoft.remote.manager.DataManager;
 import com.sqisoft.remote.view.MyAlbumListViewAdapter;
 
 import java.util.ArrayList;
@@ -35,6 +38,10 @@ public class FragmentMyAlbum extends FragmentBase {
     private String mParam2;
     private View my_album_view;
     private ListView m_ListView;
+    private Cursor imageCursor;
+    ArrayList<LocalImageObject> localImageObjects = new ArrayList<LocalImageObject>();
+
+
     private OnFragmentInteractionListener mListener;
 
     public FragmentMyAlbum() {
@@ -80,20 +87,19 @@ public class FragmentMyAlbum extends FragmentBase {
         my_album_view = inflater.inflate(R.layout.fragment_fragment_my_album, container, false);
         m_ListView = (ListView) my_album_view.findViewById(R.id.list);
 
- /*       ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("1");
-        arrayList.add("2");
-        arrayList.add("3");
-        arrayList.add("4");*/
+        getThumbInfo();
 
-        ArrayList<MyImageObject> myImageObjects = new ArrayList<MyImageObject>();
-        myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_1),false));
+     /*   myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_1),false));
         myImageObjects.add(new MyImageObject("오죽헌 입구 012","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_2),false));
         myImageObjects.add(new MyImageObject("오죽헌 정경 001","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_3),false));
         myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_1),false));
-        myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_2),false));
+        myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_2),false));*/
 
-        MyAlbumListViewAdapter myAlbumListViewAdapter = new MyAlbumListViewAdapter(getActivity(),myImageObjects);
+        DataManager.getInstance().setLocalImageObjects(localImageObjects);
+
+        Log.i("localImageObjects","localImageObjects"+ localImageObjects.size());
+
+        MyAlbumListViewAdapter myAlbumListViewAdapter = new MyAlbumListViewAdapter(getActivity(),"FLAG",this);
 
         m_ListView.setAdapter(myAlbumListViewAdapter);
 
@@ -126,18 +132,61 @@ public class FragmentMyAlbum extends FragmentBase {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+
+    private void getThumbInfo(){
+
+        String[] proj = new String[]{MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.DATA,
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.Images.Media.SIZE};
+
+        final String orderBy = MediaStore.Images.Media.DATE_ADDED;
+
+        imageCursor = getActivity().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, null, null, orderBy + " DESC");
+
+        if (imageCursor != null && imageCursor.moveToFirst()){
+            String title;
+            String thumbsID;
+            String thumbsImageID;
+            String thumbsData;
+            String data;
+            String imgSize;
+
+
+            int thumbsIDCol = imageCursor.getColumnIndex(MediaStore.Images.Media._ID);
+            int thumbsDataCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
+            int thumbsImageIDCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
+            int thumbsSizeCol = imageCursor.getColumnIndex(MediaStore.Images.Media.SIZE);
+            int thumbsTitle = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
+            int num = 0;
+            int nCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA); //bitmap
+            do {
+                thumbsID = imageCursor.getString(thumbsIDCol);
+                thumbsData = imageCursor.getString(thumbsDataCol);
+                thumbsImageID = imageCursor.getString(thumbsImageIDCol);
+                thumbsImageID = imageCursor.getString(nCol);
+                imgSize = imageCursor.getString(thumbsSizeCol);
+                title = imageCursor.getString(thumbsTitle);
+
+                num++;
+
+                if (thumbsImageID != null && thumbsImageID.startsWith("/storage/emulated/0/DCIM/HIKVISION")){
+                  Log.d("test","img is " + thumbsImageID);
+                    localImageObjects.add(new LocalImageObject("오죽헌 안채 005",title, thumbsData , true));
+                    // imagesList.add(new ServerImageObject(thumbsData));
+                }
+            }while (imageCursor.moveToNext());
+        }
+        imageCursor.close();
+        return;
+    }
+
+
 }

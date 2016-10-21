@@ -22,7 +22,8 @@ import android.widget.Toast;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.sqisoft.remote.R;
-import com.sqisoft.remote.domain.ImageObject;
+import com.sqisoft.remote.domain.ServerImageObject;
+import com.sqisoft.remote.manager.DataManager;
 import com.sqisoft.remote.view.MyRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class FragmentGallery extends  FragmentBase {
 
 
     ArrayList<String> thumbsDatas = new ArrayList<String>();
-    ArrayList<ImageObject> imagesList = new ArrayList<ImageObject>();
+    ArrayList<ServerImageObject> serverImageObjects = new ArrayList<ServerImageObject>();
     Cursor imageCursor;
 
     private OnFragmentInteractionListener mListener;
@@ -112,15 +113,16 @@ public class FragmentGallery extends  FragmentBase {
 
         getThumbInfo();
 
-        MyRecyclerAdapter myAdapter = new MyRecyclerAdapter(imagesList,this,getActivity());
+        DataManager.getInstance().setServerImageObjects(serverImageObjects);
+        MyRecyclerAdapter myAdapter = new MyRecyclerAdapter(this,getActivity());
         recyclerView.setAdapter(myAdapter);
 
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
 
         spinner = (Spinner) albumView.findViewById(R.id.spin);
+        
     /*    adapter = ArrayAdapter.createFromResource(getActivity(),R.array.country_names,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
         spinner.setAdapter(adapter);*/
 
 
@@ -228,6 +230,7 @@ public class FragmentGallery extends  FragmentBase {
             int thumbsDataCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
             int thumbsImageIDCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
             int thumbsSizeCol = imageCursor.getColumnIndex(MediaStore.Images.Media.SIZE);
+            int thumbsTitle = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
             int num = 0;
             int nCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA); //bitmap
             do {
@@ -236,10 +239,12 @@ public class FragmentGallery extends  FragmentBase {
                 thumbsImageID = imageCursor.getString(thumbsImageIDCol);
                 thumbsImageID = imageCursor.getString(nCol);
                 imgSize = imageCursor.getString(thumbsSizeCol);
+                title = imageCursor.getString(thumbsTitle);
+
                 num++;
                 if (thumbsImageID != null && thumbsImageID.startsWith("/storage/emulated/0/DCIM/HIKVISION")){
-                    Log.d("test","img is " + thumbsImageID);
-                    imagesList.add(new ImageObject(thumbsData));
+                    Log.d("test","img is " + title);
+                    serverImageObjects.add(new ServerImageObject(thumbsData,title));
                 }
             }while (imageCursor.moveToNext());
         }

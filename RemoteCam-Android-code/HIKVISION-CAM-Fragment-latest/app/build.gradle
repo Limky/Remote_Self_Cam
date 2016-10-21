@@ -26,12 +26,12 @@ dependencies {
     compile files('libs/AudioEngineSDK.jar')
     compile files('libs/HCNetSDK.jar')
     compile files('libs/PlayerSDK.jar')
-    compile 'com.github.chrisbanes.photoview:library:1.2.3'
     compile files('libs/gson-2.4.jar')
     compile files('libs/volley.jar')
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.github.chrisbanes.photoview:library:1.2.3'
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.squareup.picasso:picasso:2.5.0'
