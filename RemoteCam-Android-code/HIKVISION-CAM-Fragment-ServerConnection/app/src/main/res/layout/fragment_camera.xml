@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sqisoft.remote.fragment.FragmentCamera"
+    android:fillViewport="true" >
+
+
+    <RelativeLayout
+        android:id="@+id/widget_play"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#ffffff"
+            android:padding="3dp"
+            android:id="@+id/image_frame">
+
+            <SurfaceView
+                android:id="@+id/sur_player"
+                android:layout_width="match_parent"
+                android:layout_height="192dp"
+                android:background="#0000ff00"
+                android:layout_marginBottom="0dp" />
+
+            <ImageView
+                android:layout_margin="6dp"
+                android:layout_width="45dp"
+                android:layout_height="13dp"
+                android:id="@+id/live_img"
+                android:layout_gravity="left|top"
+                android:background="@drawable/live"/>
+
+        </FrameLayout>
+
+
+        <ImageView
+            android:src="@drawable/circle"
+            android:layout_width="80dp"
+            android:layout_height="85dp"
+            android:id="@+id/animation_circle_loading"
+            android:layout_marginTop="54dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:paddingBottom="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textColor="#212121"
+            android:text="00 : 29"
+            android:background="@android:color/transparent"
+            android:id="@+id/limit_time_textview"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:gravity=""
+            android:layout_above="@+id/camera_action_btn"/>
+
+
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/camera_action_btn"
+            android:background="@drawable/capturebtn"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="#757575"
+            android:text="30초 안에 촬영해 주세요."
+            android:id="@+id/info_textview"
+            android:layout_above="@+id/limit_time_textview"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/capture_imageview"
+            android:scaleType="fitXY"
+            android:layout_above="@+id/save_image_btn"
+            android:layout_alignLeft="@+id/info_textview"
+            android:layout_alignStart="@+id/info_textview" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:textColor="#ea3986"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:text="저장하기"
+            android:background="@drawable/button"
+            android:id="@+id/save_image_btn"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/cancel_btn"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/animation_circle_loading"
+            android:layout_toEndOf="@+id/animation_circle_loading"
+            android:visibility="gone" />
+
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="105dp"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/timericon"
+        android:id="@+id/timer_layout"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_marginBottom="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="3"
+            android:textSize="35dp"
+            android:id="@+id/timer"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:textColor="#ea3986" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
