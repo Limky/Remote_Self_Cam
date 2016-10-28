@@ -4,169 +4,73 @@
     android:layout_height="fill_parent"
     android:background="#E0E0E0"
     >
-
-    <ImageView
-        android:id="@+id/ImageView01"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/antartica3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="120dp"></ImageView>
-
-    <Gallery
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:id="@+id/Gallery01"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spacing="10dp"
-        android:unselectedAlpha="0.2"
-        android:background="#FFFFFF"
-        android:layout_alignParentBottom="true"></Gallery>
-
-
-</RelativeLayout>
-
-
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.sqisoft.remote.fragment.FragmentMyAlbumImageDetail"
-    android:background="#000000">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="3dp"
-    android:visibility="gone"
-    android:id="@+id/linearLayout2">
-
-    <Button android:id="@+id/btn_previous"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="PREVIOUS"
-        android:textSize="12sp"
-        android:onClick="mOnClick"/>
-
-    <Button android:id="@+id/btn_next"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Next"
-        android:textSize="12sp"
-        android:onClick="mOnClick"/>
-
-</LinearLayout>
-&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;
-
-
-<RelativeLayout
-    android:id="@+id/view_camera_buttonLayout"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_alignParentBottom="true"
-    android:visibility="gone">
-    <Button
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to the List"
-        android:id="@+id/btn_back"
-        />
-
-</RelativeLayout>
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="100dp"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:id="@+id/DetailLayout"
-    android:background="@color/cardview_shadow_end_color">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:scaleType="fitXY"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        />
-
-</RelativeLayout>
-
     <RelativeLayout
-        android:orientation="horizontal"
+        android:background="@drawable/my_album_detail_top_layout"
+        android:padding="3dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="#424242"
         android:id="@+id/relativeLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="촬영 카테고리"
+            android:textSize="14dp"
+            android:layout_margin="10dp"
+            android:id="@+id/textView3" />
 
-
-        <Button
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_gravity="right|bottom"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:id="@+id/save"
-            android:layout_toLeftOf="@+id/share_sns"
-            android:layout_toStartOf="@+id/share_sns"
-            android:background="@drawable/download"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
-
-        <Button
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="right|bottom"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/share"
-            android:id="@+id/share_sns"
-            android:layout_toLeftOf="@+id/delete"
-            android:layout_toStartOf="@+id/delete" />
-
-        <Button
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="25dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="right|bottom"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/delete"
-            android:id="@+id/delete"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017 07 17"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="400dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="110dp"
+        android:layout_below="@+id/relativeLayout">
+
+        <ImageView
+            android:id="@+id/my_album_detail_image"
+            android:scaleType="fitXY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/image_detail_recycler_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:layout_below="@+id/linearLayout2"
+        android:scrollbars="none"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
-    </android.support.v4.view.ViewPager>
+        android:layout_alignParentStart="true" />
+
+</LinearLayout>
 
 
-</RelativeLayout>-->
+
+</RelativeLayout>
+
+

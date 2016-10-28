@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.sqisoft.remote.R;
+import com.sqisoft.remote.data.ResponseListener;
+import com.sqisoft.remote.domain.ServerImageDomain;
 import com.sqisoft.remote.fragment.FragmentCamera;
 import com.sqisoft.remote.fragment.FragmentGallery;
 import com.sqisoft.remote.fragment.FragmentImageDetail;
@@ -18,9 +20,13 @@ import com.sqisoft.remote.fragment.FragmentMain;
 import com.sqisoft.remote.fragment.FragmentMyAlbum;
 import com.sqisoft.remote.fragment.FragmentMyAlbumImageDetail;
 import com.sqisoft.remote.fragment.FragmentUserConfirm;
+import com.sqisoft.remote.manager.DataManager;
 import com.sqisoft.remote.util.FragmentUtil;
 import com.sqisoft.remote.util.Log;
+import com.sqisoft.remote.util.ServerImageUtil;
 import com.sqisoft.remote.view.TitleView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements FragmentMain.OnFragmentInteractionListener,FragmentCamera.OnFragmentInteractionListener,
         FragmentGallery.OnFragmentInteractionListener,FragmentImageDetail.OnFragmentInteractionListener,FragmentUserConfirm.OnFragmentInteractionListener,FragmentMyAlbum.OnFragmentInteractionListener
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
     long backKeyPressedTime = 0;
     private Toast toast;
     private static TitleView mTitleView;
+    private static Button mPhoto_gallery_Btn;
     private static final int ONE_SECOND = 1000;
 
     private FragmentManager manager;
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
 
         mTitleView = (TitleView) findViewById(R.id.remotecamera_main_title);
         naviLayout = (FrameLayout) findViewById(R.id.navi_layout);
+        mPhoto_gallery_Btn = (Button) findViewById(R.id.photo_gallery_Btn);
 
          manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
@@ -82,6 +90,26 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
             }
         });
 
+         /**
+         * Json 파일 파싱해서 자바 객체로..
+         * **/
+        ServerImageUtil.getZone(new ResponseListener<ServerImageDomain[]>() {
+
+            @Override
+            public void response(boolean success, ServerImageDomain[] data) {
+                Log.d("test","메인 안에 response (1)");
+                if(success && data != null) {
+                    Log.d("test","response  피니시(11)");
+                    ArrayList<ServerImageDomain> serverImageDomains = new ArrayList<ServerImageDomain>();
+                    for (int i = 0; i < data.length; i++) {
+                        serverImageDomains.add(data[i]);
+                        DataManager.getInstance().setServerImageDomains(serverImageDomains);
+                        Log.d("test", data[i].getImageTitle());
+                    }
+                }
+            }
+        });
+
     }
 
 
@@ -97,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
     public void onResume(){
         super.onResume();
         naviLayout.setVisibility(View.VISIBLE);
+
     }
 
     public void backButtonFunction(){
@@ -125,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
 
             if(System.currentTimeMillis() <= backKeyPressedTime + 2000){
                 finish();
-                toast.cancel();
+                toast.cancel();sl
             }*/
         }
 
@@ -140,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements FragmentMain.OnFr
     public static TitleView getTitleView(){
         return mTitleView;
     }
-
+    public static Button getGalleryButton(){ return mPhoto_gallery_Btn; }
 
 
     public interface onKeyBackPressedListener {

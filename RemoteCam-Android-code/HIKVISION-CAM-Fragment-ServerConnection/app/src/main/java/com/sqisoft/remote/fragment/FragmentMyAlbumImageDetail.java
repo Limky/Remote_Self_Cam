@@ -1,10 +1,14 @@
 package com.sqisoft.remote.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +16,14 @@ import android.widget.ImageView;
 
 import com.sqisoft.remote.R;
 import com.sqisoft.remote.domain.LocalImageObject;
+import com.sqisoft.remote.domain.ServerImageDomain;
 import com.sqisoft.remote.manager.DataManager;
+import com.sqisoft.remote.view.MyAlbumDetailRecyclerAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,8 +50,11 @@ public class FragmentMyAlbumImageDetail extends FragmentBase {
     private int currentIndex;
     private ViewPager pager;
     private View myAlbumImageDetailView;
+    private Bitmap bitmap;
   //  private Button share,download,delete;
-    private Integer[] pics = null;
+
+   ArrayList<ServerImageDomain> serverImageDomains = DataManager.getInstance().getServerImageDomains();
+
 
 
     public FragmentMyAlbumImageDetail() {
@@ -93,70 +105,71 @@ public class FragmentMyAlbumImageDetail extends FragmentBase {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myAlbumImageDetailView = inflater.inflate(R.layout.fragment_fragment_my_album_image_detail, container, false);
+        setGalleryButton(true);
+        setTitle("MY 앨범 사진보기");
+        final RecyclerView image_detail_recyclerView = (RecyclerView) myAlbumImageDetailView.findViewById(R.id.image_detail_recycler_view);
+        ImageView my_album_detail_image = (ImageView) myAlbumImageDetailView.findViewById(R.id.my_album_detail_image);
 
-/*
-        Gallery ga = (Gallery)myAlbumImageDetailView.findViewById(R.id.Gallery01);
-        ga.setAdapter(new ImageAdapter(getActivity()));
+        MyAlbumDetailRecyclerAdapter myAdapter = new MyAlbumDetailRecyclerAdapter(this,getActivity(),my_album_detail_image);
 
-        imageView = (ImageView)myAlbumImageDetailView.findViewById(R.id.ImageView01);
-        ga.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        image_detail_recyclerView.setAdapter(myAdapter);
+        image_detail_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1, OrientationHelper.HORIZONTAL,false));
+
+
+     /*
+        Thread mThread = new Thread(){
 
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Toast.makeText(getActivity(), "You have selected picture " + (arg2+1) + " of Antartica", Toast.LENGTH_SHORT).show();
-                imageView.setImageResource(pics[arg2]);
+            public void run(){
 
+                try {
+                    URL url = new URL(serverImageDomains.get(currentIndex).getImageUrl());
+                    try {
+
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setDoInput(true);
+                        conn.connect();
+
+                        InputStream is = conn.getInputStream();
+                        bitmap = BitmapFactory.decodeStream(is);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
 
-        });*/
+        };
 
-
-    /*    ArrayList<ServerImageObject> imagesList = new ArrayList<>();
-        for(int i = 0; i < localImageObject.size() ; i++)
-            imagesList.add(new ServerImageObject(localImageObject.get(i).getmImagePath()));
-
-        pager= (ViewPager)myAlbumImageDetailView.findViewById(R.id.pager);
-        MyPageAdapter adapter= new MyPageAdapter(getActivity().getLayoutInflater(),imagesList);
-        pager.setAdapter(adapter);
-        pager.setCurrentItem(currentIndex);
-
-
-        // 버튼을 터치 했을 때 이벤트 발생
-        Button save_btn = (Button) myAlbumImageDetailView.findViewById(R.id.save);
-        save_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 터치 시 해당 아이템 이름 출력
-                Toast.makeText(getActivity(), "Selected : save_btn", Toast.LENGTH_SHORT).show();
-            }
-        });
+        mThread.start();
+        try {
+            mThread.join();
+            Bitmap resized = Bitmap.createScaledBitmap(bitmap,1920, 1080, true);
+            my_album_detail_image.setImageBitmap(resized);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
 
 
 
-        // 버튼을 터치 했을 때 이벤트 발생
-        Button share_sns_btn = (Button) myAlbumImageDetailView.findViewById(R.id.share_sns);
-        share_sns_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 터치 시 해당 아이템 이름 출력
-                Toast.makeText(getActivity(), "Selected : share_sns_btn", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-        // 버튼을 터치 했을 때 이벤트 발생
-        Button delete_btn = (Button) myAlbumImageDetailView.findViewById(R.id.delete);
-        delete_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 터치 시 해당 아이템 이름 출력
-                Toast.makeText(getActivity(), "Selected : delete_btn", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+     /*   bitmap = DataManager.getInstance().getWebimage(serverImageDomains.get(currentIndex).getImageUrl());
+        my_album_detail_image.setImageBitmap(bitmap);
 */
 
+        Picasso.with(getActivity())
+                .load(serverImageDomains.get(currentIndex).getImageUrl())
+                .placeholder(R.drawable.dx)
+                .resize(1420,580)
+                .into(my_album_detail_image);
+
+
+        PhotoViewAttacher attacher = new PhotoViewAttacher(my_album_detail_image);
+        attacher.setScaleType(ImageView.ScaleType.FIT_XY);
+        attacher.update();
 
 
         return myAlbumImageDetailView;

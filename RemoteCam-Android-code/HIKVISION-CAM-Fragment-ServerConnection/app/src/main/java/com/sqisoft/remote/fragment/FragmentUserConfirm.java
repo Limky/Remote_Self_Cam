@@ -85,6 +85,7 @@ public class FragmentUserConfirm extends FragmentBase {
 
         catching_img = (ImageView) fragment_fragment_user_confirm.findViewById(R.id.catching_img);
         setTitle("저장 완료");
+        setGalleryButton(true);
 
         //프래그먼트 페이지 이동을 위한 초기 설정
         manager = getFragmentManager();

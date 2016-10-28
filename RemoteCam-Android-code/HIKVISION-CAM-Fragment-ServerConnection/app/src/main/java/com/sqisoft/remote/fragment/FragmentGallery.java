@@ -110,6 +110,7 @@ public class FragmentGallery extends  FragmentBase {
         RecyclerView recyclerView = (RecyclerView) albumView.findViewById(R.id.recycler_view);
 
         setTitle("셀카 갤러리");
+        setGalleryButton(true);
 
         getThumbInfo();
 

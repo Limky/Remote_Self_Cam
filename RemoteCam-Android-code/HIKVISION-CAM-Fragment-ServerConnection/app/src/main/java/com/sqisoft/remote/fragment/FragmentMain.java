@@ -16,13 +16,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sqisoft.remote.R;
-import com.sqisoft.remote.data.ResponseListener;
 import com.sqisoft.remote.domain.SelfieZoneObject;
-import com.sqisoft.remote.domain.ServerImageDomain;
-import com.sqisoft.remote.manager.DataManager;
-import com.sqisoft.remote.util.CommandUtil;
 import com.sqisoft.remote.util.FragmentUtil;
-import com.sqisoft.remote.util.Log;
 import com.sqisoft.remote.view.MyMainListViewAdapter;
 
 import java.util.ArrayList;
@@ -100,7 +95,7 @@ public class FragmentMain extends FragmentBase {
                              Bundle savedInstanceState) {
 
         setTitle("셀카 촬영");
-
+        setGalleryButton(false);
         // Inflate the layout for this fragment
         fragment_main_view = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -131,30 +126,13 @@ public class FragmentMain extends FragmentBase {
 
         myMainListViewAdapter = new MyMainListViewAdapter(getActivity(), selfieZoneObjects);
 
-        View header = inflater.inflate(R.layout.listview_header,null,false);
-        View footer = inflater.inflate(R.layout.listview_footer,null,false);
+        View header = inflater.inflate(R.layout.listview_main_header,null,false);
+        View footer = inflater.inflate(R.layout.listview_main_footer,null,false);
         m_ListView.addHeaderView(header);
         m_ListView.addFooterView(footer);
         m_ListView.setAdapter(myMainListViewAdapter);
 
 
-
-        CommandUtil.getZone(new ResponseListener<ServerImageDomain[]>() {
-
-            @Override
-            public void response(boolean success, ServerImageDomain[] data) {
-                Log.d("test","메인 안에 response (1)");
-                if(success && data != null) {
-                    Log.d("test","response  피니시(11)");
-                    ArrayList<ServerImageDomain> serverImageDomains = new ArrayList<ServerImageDomain>();
-                    for (int i = 0; i < data.length; i++) {
-                        serverImageDomains.add(data[i]);
-                        DataManager.getInstance().setServerImageDomains(serverImageDomains);
-                        Log.d("test", data[i].getImageTitle());
-                    }
-                }
-            }
-        });
 
     //   MyVolleyUtil.getInstance().sendRequest();
 

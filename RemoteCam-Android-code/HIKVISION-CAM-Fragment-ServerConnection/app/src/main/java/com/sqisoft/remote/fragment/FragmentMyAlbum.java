@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import com.sqisoft.remote.R;
 import com.sqisoft.remote.domain.LocalImageObject;
-import com.sqisoft.remote.manager.DataManager;
 import com.sqisoft.remote.view.MyAlbumListViewAdapter;
 
 import java.util.ArrayList;
@@ -89,17 +88,10 @@ public class FragmentMyAlbum extends FragmentBase {
 
         getThumbInfo();
 
-     /*   myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_1),false));
-        myImageObjects.add(new MyImageObject("오죽헌 입구 012","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_2),false));
-        myImageObjects.add(new MyImageObject("오죽헌 정경 001","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_3),false));
-        myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_1),false));
-        myImageObjects.add(new MyImageObject("오죽헌 안채 005","2016.09.27", BitmapFactory.decodeResource(getResources(),R.drawable.tour_img_2),false));*/
+        setTitle("MY 앨범");
+        setGalleryButton(true);
 
-        DataManager.getInstance().setLocalImageObjects(localImageObjects);
-
-        Log.i("localImageObjects","localImageObjects"+ localImageObjects.size());
-
-        MyAlbumListViewAdapter myAlbumListViewAdapter = new MyAlbumListViewAdapter(getActivity(),"FLAG",this);
+        MyAlbumListViewAdapter myAlbumListViewAdapter = new MyAlbumListViewAdapter(getActivity(),this);
 
         m_ListView.setAdapter(myAlbumListViewAdapter);
 

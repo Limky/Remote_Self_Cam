@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.sqisoft.remote.R;
 import com.sqisoft.remote.domain.ServerImageDomain;
 import com.sqisoft.remote.domain.ServerImageObject;
@@ -31,8 +29,8 @@ public class MyGalleryDetailRecyclerAdapter extends RecyclerView.Adapter{
     private Fragment adapterContext;
     private ServerImageObject dataItem;
     private FragmentManager fragmentManager;
-    private  FragmentTransaction transaction;
-    private  Context context;
+    private FragmentTransaction transaction;
+    private Context context;
     private ImageLoader mImageLoader;
     private ImageView mDetail_image;
     // Adapter constructor
@@ -47,7 +45,7 @@ public class MyGalleryDetailRecyclerAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.server_gallery_item_layout, null);
+        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.gallery_listitem, null);
 
         return new MyViewHolder(layoutView);
 
@@ -56,11 +54,11 @@ public class MyGalleryDetailRecyclerAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
 
-        // Casting the viewHolder to MyViewHolder so I could interact with the views
-        MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
-        myViewHolder.server_imageview.setOnClickListener(new View.OnClickListener() {
+        final MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
+        myViewHolder.mServer_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Picasso.with(context)
                         .load(serverImageDomains.get(position).getImageUrl())
                         .placeholder(R.drawable.dx)
@@ -69,13 +67,12 @@ public class MyGalleryDetailRecyclerAdapter extends RecyclerView.Adapter{
         });
 
 
-        myViewHolder.mImageTttleTextView.setText(serverImageDomains.get(position).getImageTitle());
 
         Picasso.with(context)
                 .load(serverImageDomains.get(position).getImageUrl())
                 .placeholder(R.drawable.dx)
                 .resize(352,332)
-                .into(myViewHolder.server_imageview);
+                .into(myViewHolder.mServer_imageview);
     }
 
     @Override
@@ -87,16 +84,14 @@ public class MyGalleryDetailRecyclerAdapter extends RecyclerView.Adapter{
     /** This is our ViewHolder class */
     public static class MyViewHolder extends RecyclerView.ViewHolder  {
 
-        public ImageView server_imageview;
-        public NetworkImageView mNetwokrImageView;
-        public TextView mImageTttleTextView;
+        public ImageView detailView,mServer_imageview;
+        public RecyclerView recyclerView;
+
 
         public MyViewHolder(View itemView) {
             super(itemView); // Must call super() first
 
-            server_imageview = (ImageView) itemView.findViewById(R.id.server_imageview);
-     //       mNetwokrImageView = (NetworkImageView) itemView.findViewById(R.id.network_imageview);
-            mImageTttleTextView = (TextView) itemView.findViewById(R.id.server_image_title);
+            mServer_imageview = (ImageView) itemView.findViewById(R.id.server_imageview);
 
         }
 

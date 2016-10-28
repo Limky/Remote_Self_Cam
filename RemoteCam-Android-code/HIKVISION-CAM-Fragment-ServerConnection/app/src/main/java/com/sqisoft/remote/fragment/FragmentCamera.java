@@ -169,6 +169,7 @@ public class FragmentCamera extends FragmentBase implements SurfaceHolder.Callba
         transaction = manager.beginTransaction();
 
         setTitle("촬영 준비");
+        setGalleryButton(true);
         Log.d("카메라 프래그먼트 진입완료","카메라 프래그먼트 onCreateView");
 
 

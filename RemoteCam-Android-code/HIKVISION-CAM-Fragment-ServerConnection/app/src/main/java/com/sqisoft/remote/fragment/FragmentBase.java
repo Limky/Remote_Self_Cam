@@ -1,6 +1,7 @@
 package com.sqisoft.remote.fragment;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.sqisoft.remote.activity.MainActivity;
 import com.sqisoft.remote.view.TitleView;
@@ -14,6 +15,7 @@ public abstract class FragmentBase extends Fragment{
     private String mtitle;
 
     public FragmentBase(){
+
          titleView = MainActivity.getTitleView();
         if(titleView != null) {
             titleView.setText(getTitle());
@@ -29,6 +31,13 @@ public abstract class FragmentBase extends Fragment{
         titleView.invalidate();
     }
 
+    public void  setGalleryButton(Boolean b){
+        if(b) {
+            MainActivity.getGalleryButton().setVisibility(View.GONE);
+        }else{
+            MainActivity.getGalleryButton().setVisibility(View.VISIBLE);
+        }
+    }
 
     @Override
     public void onPause() {

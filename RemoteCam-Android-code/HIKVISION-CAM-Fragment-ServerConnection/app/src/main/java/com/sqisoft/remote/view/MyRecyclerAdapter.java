@@ -39,7 +39,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
     private ImageLoader mImageLoader;
     // Adapter constructor
     public MyRecyclerAdapter(Fragment adapterContext, Context context) {
-        
+
         this.adapterContext = adapterContext;
         this.serverImageDomains = DataManager.getInstance().getServerImageDomains();
         this.context = context;
@@ -48,7 +48,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.server_gallery_item_layout, null);
+        View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.gallery_listitem, null);
 
         return new MyViewHolder(layoutView);
 
@@ -56,10 +56,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
-        
+
         // Casting the viewHolder to MyViewHolder so I could interact with the views
         MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
-        myViewHolder.server_imageview.setOnClickListener(new View.OnClickListener() {
+        myViewHolder.mServer_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fragmentManager = adapterContext.getFragmentManager();
@@ -77,7 +77,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
                 .load(serverImageDomains.get(position).getImageUrl())
                 .placeholder(R.drawable.dx)
                 .resize(452,432)
-                .into(myViewHolder.server_imageview);
+                .into(myViewHolder.mServer_imageview);
     }
 
     @Override
@@ -89,15 +89,15 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter{
     /** This is our ViewHolder class */
     public static class MyViewHolder extends RecyclerView.ViewHolder  {
 
-        public ImageView server_imageview;
+        public ImageView mServer_imageview;
         public NetworkImageView mNetwokrImageView;
         public TextView mImageTttleTextView;
 
         public MyViewHolder(View itemView) {
             super(itemView); // Must call super() first
 
-            server_imageview = (ImageView) itemView.findViewById(R.id.server_imageview);
-     //       mNetwokrImageView = (NetworkImageView) itemView.findViewById(R.id.network_imageview);
+            mServer_imageview = (ImageView) itemView.findViewById(R.id.server_imageview);
+            //       mNetwokrImageView = (NetworkImageView) itemView.findViewById(R.id.network_imageview);
             mImageTttleTextView = (TextView) itemView.findViewById(R.id.server_image_title);
 
         }

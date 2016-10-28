@@ -82,17 +82,15 @@ public class FragmentImageDetail extends FragmentBase{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View imageDetailView = inflater.inflate(R.layout.fragment_imagedetail, container, false);
+        View imageDetailView = inflater.inflate(R.layout.fragment_gallery_image_detail, container, false);
         ImageView detailImageView = (ImageView) imageDetailView.findViewById(R.id.detail_image_view);
 
 
         setTitle("셀카 갤러리 사진보기");
-
+        setGalleryButton(true);
         mContext = getActivity();
 
         RecyclerView image_detail_recyclerView = (RecyclerView) imageDetailView.findViewById(R.id.image_detail_recycler_view);
-
-
         MyGalleryDetailRecyclerAdapter myAdapter = new MyGalleryDetailRecyclerAdapter(this,getActivity(),detailImageView);
 
 
@@ -112,7 +110,7 @@ public class FragmentImageDetail extends FragmentBase{
         attacher.setScaleType(ImageView.ScaleType.FIT_XY);
         attacher.update();
 
-        detailImageView.invalidate();
+
 
 
         return imageDetailView;
